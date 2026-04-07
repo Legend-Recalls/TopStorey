@@ -20,18 +20,25 @@ export function Events({ items }: EventsProps) {
 
   return (
     <article className="feature-module event-module">
+      {/* Same header pattern as Conversations */}
       <div className="module-head">
         <h3>Upcoming Events</h3>
         <span className="module-link">Calendar</span>
       </div>
+
+      {/* Featured event — same slot as the podcast hero image in Conversations */}
       {featured && (
         <div className="event-hero">
           <div className="event-meta-row">
-            <span className="event-label">{featured.label}</span>
-            <span className="event-location">{featured.location}</span>
+            {featured.label && (
+              <span className="event-label">{featured.label}</span>
+            )}
+            {featured.location && (
+              <span className="event-location">{featured.location}</span>
+            )}
           </div>
           <h4>{featured.title}</h4>
-          <p>{featured.description}</p>
+          {featured.description && <p>{featured.description}</p>}
           {featured.countdown && (
             <div className="countdown-grid">
               {featured.countdown.map((item) => (
@@ -49,18 +56,24 @@ export function Events({ items }: EventsProps) {
           )}
         </div>
       )}
-      {upcoming.map((event) => (
-        <article key={event.title} className="module-list-item event-list-item">
-          <div className="date-badge">
-            <span>{event.month}</span>
-            <strong>{event.day}</strong>
-          </div>
-          <div>
-            <h5>{event.title}</h5>
-            <p>{event.meta}</p>
-          </div>
-        </article>
-      ))}
+
+      {/* Upcoming list — same slot as the podcast list items in Conversations */}
+      {upcoming.length > 0 && (
+        <div className="module-list">
+          {upcoming.map((event) => (
+            <article key={event.title} className="module-list-item">
+              <div className="date-badge">
+                <span>{event.month}</span>
+                <strong>{event.day}</strong>
+              </div>
+              <div>
+                <h5>{event.title}</h5>
+                {event.meta && <p>{event.meta}</p>}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </article>
   )
 }

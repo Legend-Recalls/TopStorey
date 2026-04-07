@@ -1,7 +1,7 @@
 import { useTheme } from '../theme/ThemeContext'
 
 export function Masthead() {
-  const { theme, mode, toggleTheme } = useTheme()
+  const { mode, toggleTheme } = useTheme()
 
   return (
     <div className="masthead">
