@@ -48,7 +48,7 @@ const leadStory = {
   category: 'Lead Story | Markets',
   image:
     'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80',
-  title: 'India's next real estate cycle will be decided by discipline, not just demand.',
+  title: "India's next real estate cycle will be decided by discipline, not just demand.",
   summary:
     'Developers are launching into a more selective market, buyers are scrutinising execution more closely, and capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
 }
@@ -331,7 +331,7 @@ export default function App() {
           <Conversations items={conversations} />
         </section>
 
-        <section className="section split-band" id="events">
+        <section className="section split-section" id="events">
           <div className="section-heading">
             <p className="eyebrow">Events</p>
             <h2>Upcoming forums, archived sessions, and newsroom-led industry engagement.</h2>
