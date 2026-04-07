@@ -133,6 +133,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.style.setProperty('--color-text-secondary', t.text.secondary)
     root.style.setProperty('--color-text-muted', t.text.muted)
 
+    // Ticker background colors
+    root.style.setProperty('--ticker-bg-start', mode === 'light' ? '#fbf7f0' : '#24201c')
+    root.style.setProperty('--ticker-bg-end', mode === 'light' ? '#f5efe6' : '#1f1c18')
+
     // Apply spacing
     root.style.setProperty('--spacing-xs', theme.spacing.xs)
     root.style.setProperty('--spacing-sm', theme.spacing.sm)

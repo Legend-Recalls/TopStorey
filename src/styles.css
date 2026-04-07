@@ -19,6 +19,10 @@
   --color-text-secondary: #5f584f;
   --color-text-muted: #8d7f71;
 
+  /* Ticker colors - defaults for light mode */
+  --ticker-bg-start: #fbf7f0;
+  --ticker-bg-end: #f5efe6;
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -103,7 +107,7 @@ input {
   border-right: 1.5px solid var(--color-border);
   border-bottom: 1.5px solid var(--color-border);
   border-radius: 0 0 1rem 1rem;
-  background: linear-gradient(135deg, #fbf7f0 0%, #f5efe6 100%);
+  background: linear-gradient(135deg, var(--ticker-bg-start) 0%, var(--ticker-bg-end) 100%);
   overflow: hidden;
 }
 
