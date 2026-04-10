@@ -33,7 +33,7 @@ export function HeroSection({ leadStory, sideStories = [] }: HeroSectionProps) {
   )
 }
 
-export function LeadStory({ title, image, category }: LeadStoryData) {
+export function LeadStory({ title, image, category, summary }: LeadStoryData) {
   return (
     <article
       className="lead-story-card"
@@ -42,6 +42,10 @@ export function LeadStory({ title, image, category }: LeadStoryData) {
       <div className="top-story-copy">
         <span className="top-story-kicker">{category}</span>
         <h1>{title}</h1>
+        {summary && <p className="lead-summary">{summary}</p>}
+        <a href="#" className="read-full-link">
+          Read the full analysis →
+        </a>
       </div>
     </article>
   )
@@ -54,7 +58,7 @@ export function SideStory({ title, image, category }: SideStoryData) {
       style={{ backgroundImage: `url(${image})` }}
     >
       <div className="top-story-copy">
-        <span className="top-story-kicker">Top Story</span>
+        <span className="top-story-kicker">{category}</span>
         <h2>{title}</h2>
       </div>
     </article>

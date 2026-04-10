@@ -3,12 +3,14 @@ interface NewsTickerProps {
 }
 
 export function NewsTicker({ items }: NewsTickerProps) {
-  // Duplicate items for seamless infinite scroll
   const doubled = [...items, ...items]
 
   return (
     <div className="news-ticker">
-      <span className="ticker-badge">Newsroom Live</span>
+      <span className="ticker-badge">
+        <span className="live-dot" />
+        Live
+      </span>
       <div className="ticker-track">
         <div className="ticker-content">
           {doubled.map((item, i) => (

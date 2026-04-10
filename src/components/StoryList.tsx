@@ -18,14 +18,17 @@ export function StoryList({ stories }: StoryListProps) {
           <span className="story-rank">{`${index + 1}`.padStart(2, '0')}</span>
           <div
             className="story-image latest-image"
-            style={{ backgroundImage: `linear-gradient(180deg, rgba(23, 21, 18, 0.08), rgba(23, 21, 18, 0.28)), url(${story.image})` }}
+            style={{ backgroundImage: `url(${story.image})` }}
             aria-hidden="true"
           />
           <div className="story-body">
             <p className="story-category">{story.category}</p>
             <h3>{story.title}</h3>
-            <p className="story-meta">{story.meta}</p>
+            <span className="story-meta">{story.meta}</span>
             <p>{story.summary}</p>
+            <a href="#" className="story-read-more">
+              Continue reading <span>→</span>
+            </a>
           </div>
         </article>
       ))}

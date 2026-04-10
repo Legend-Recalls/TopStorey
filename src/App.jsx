@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import {
   Masthead,
   Navigation,
@@ -20,7 +21,7 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
     title: 'Rate easing is changing buyer timing, but not in the way developers expected.',
-    meta: '85K views • 4 min read',
+    meta: '85K views · 4 min read',
     summary:
       'A closer read on financing sentiment, launch discipline, and how policy noise is feeding selective demand.',
   },
@@ -29,7 +30,7 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80',
     title: 'Peripheral growth is no longer a fringe story. Infrastructure sequencing now decides pricing power.',
-    meta: '41K views • 5 min read',
+    meta: '41K views · 5 min read',
     summary:
       'Where absorption is real, where speculation is outrunning fundamentals, and which micro-markets are diverging.',
   },
@@ -38,7 +39,7 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
     title: 'Office demand is stabilising, yet leasing headlines still hide asset-quality dispersion.',
-    meta: '37K views • 4 min read',
+    meta: '37K views · 4 min read',
     summary:
       'Top Storey tracks what headline leasing numbers miss: tenant mix, location resilience, and replacement risk.',
   },
@@ -50,7 +51,7 @@ const leadStory = {
     'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80',
   title: "India's next real estate cycle will be decided by discipline, not just demand.",
   summary:
-    'Developers are launching into a more selective market, buyers are scrutinising execution more closely, and capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
+    'Developers are launching into a more selective market. Capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
 }
 
 const sideLeadStories = [
@@ -119,11 +120,11 @@ const conversations = [
   },
   {
     title: 'Interview: CEO of Blackstone on European Expansion',
-    meta: '45 min listen • Hosted by L. Sterling',
+    meta: '45 min listen · Hosted by L. Sterling',
   },
   {
     title: 'Panel: Sustainable Building Materials & ESG Compliance',
-    meta: '52 min listen • Industry panel',
+    meta: '52 min listen · Industry panel',
   },
 ]
 
@@ -146,7 +147,7 @@ const events = [
     month: 'Nov',
     day: '12',
     title: 'Webinar: Asian Markets Q4 Outlook',
-    meta: 'Virtual • Free for subscribers',
+    meta: 'Virtual · Free for subscribers',
   },
 ]
 
@@ -154,17 +155,17 @@ const mostRead = [
   {
     label: 'Most clicked',
     title: 'Why premium launches are holding velocity while mass housing demand fragments.',
-    meta: '62K views • 4 min read',
+    meta: '62K views · 4 min read',
   },
   {
     label: 'Most shared',
     title: 'What the latest land deals actually reveal about developer risk appetite.',
-    meta: '49K views • 6 min read',
+    meta: '49K views · 6 min read',
   },
   {
     label: 'Most discussed',
     title: 'Is branded real estate research becoming marketing theatre or public utility?',
-    meta: '44K views • 5 min read',
+    meta: '44K views · 5 min read',
   },
 ]
 
@@ -262,94 +263,125 @@ const footerSections = {
   legal: ['Terms of Service', 'Privacy Policy', 'Cookie Policy', 'Accessibility'],
 }
 
+function ScrollProgress() {
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+      setWidth(progress)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return <div className="scroll-progress" style={{ width: `${width}%` }} />
+}
+
 export default function App() {
   return (
-    <div className="page-shell">
-      <header className="hero">
-        <Masthead />
-        <NewsTicker items={tickerItems} />
-        <Navigation items={navItems} />
-        <HeroSection leadStory={leadStory} sideStories={sideLeadStories} />
-      </header>
+    <>
+      <ScrollProgress />
+      <div className="page-shell">
+        <header className="hero">
+          <Masthead />
+          <NewsTicker items={tickerItems} />
+          <Navigation items={navItems} />
+          <HeroSection leadStory={leadStory} sideStories={sideLeadStories} />
+        </header>
 
-      <main className="news-layout">
-        <section className="section main-column" id="latest">
-          <div className="section-heading">
-            <p className="eyebrow">Latest</p>
-            <h2>The most recent stories and market updates across the real estate sector.</h2>
-          </div>
-
-          <StoryList stories={latestStories} />
-        </section>
-
-        <aside className="sidebar-column">
-          <section className="section sidebar-section">
-            <div className="section-heading compact-heading">
-              <p className="eyebrow">Most Read</p>
-              <h2>What is resonating with readers right now.</h2>
+        <main className="news-layout">
+          <section className="section main-column" id="latest">
+            <div className="section-heading">
+              <p className="eyebrow">Latest</p>
+              <h2>The most recent stories and market updates across the real estate sector.</h2>
             </div>
-            <MostRead items={mostRead} />
-            <a href="#featured" className="sidebar-link">
-              View all trending stories
-            </a>
+            <StoryList stories={latestStories} />
           </section>
-        </aside>
 
-        <section className="section split-band" id="featured">
-          <div className="section-heading">
-            <p className="eyebrow">Featured</p>
-            <h2>Research-led reports and insight grounded in evidence, not industry theatre.</h2>
-          </div>
-          <div className="bullet-card">
-            {featuredReports.map((item) => (
-              <p key={item}>{item}</p>
-            ))}
-          </div>
-        </section>
+          <aside className="sidebar-column">
+            <section className="section sidebar-section">
+              <div className="section-heading compact-heading">
+                <p className="eyebrow">Most Read</p>
+                <h2>What is resonating with readers right now.</h2>
+              </div>
+              <MostRead items={mostRead} />
+              <a href="#featured" className="sidebar-link">
+                View all trending stories →
+              </a>
+            </section>
+          </aside>
 
-        <section className="section" id="markets">
-          <div className="section-heading">
-            <p className="eyebrow">Markets</p>
-            <h2>Coverage organised by asset class, cycle, and sector dynamics.</h2>
-          </div>
-          <Markets columns={marketColumns} />
-        </section>
+          <hr className="section-rule" />
 
-        <section className="section split-band" id="cities">
-          <div className="section-heading">
-            <p className="eyebrow">Cities</p>
-            <h2>Geography-led analysis with region-specific search and reporting depth.</h2>
-          </div>
-          <Cities cities={cities} />
-        </section>
+          <section className="section split-band" id="featured">
+            <div className="section-heading">
+              <p className="eyebrow">Featured</p>
+              <h2>Research-led reports and insight grounded in evidence, not industry theatre.</h2>
+            </div>
+            <div className="bullet-card">
+              {featuredReports.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
+            </div>
+          </section>
 
-        <section className="section split-section" id="conversations">
-          <div className="section-heading">
-            <p className="eyebrow">Conversations</p>
-            <h2>Interviews, opinions, and debate from across the industry.</h2>
-          </div>
-          <Conversations items={conversations} />
-        </section>
+          <hr className="section-rule" />
 
-        <section className="section split-section" id="events">
-          <div className="section-heading">
-            <p className="eyebrow">Events</p>
-            <h2>Upcoming forums, archived sessions, and newsroom-led industry engagement.</h2>
-          </div>
-          <Events items={events} />
-        </section>
+          <section className="section" id="markets" style={{ gridColumn: '1 / -1' }}>
+            <div className="section-heading">
+              <p className="eyebrow">Markets</p>
+              <h2>Coverage organised by asset class, cycle, and sector dynamics.</h2>
+            </div>
+            <Markets columns={marketColumns} />
+          </section>
 
-        <section className="section approach-section" id="about">
-          <About links={aboutLinks} />
-          <ContactCard
-            title="Independent journalism with accountability built into the frame."
-            description="In an industry often shaped by promotion, Top Storey is positioned as an analytical newsroom. The product should feel like a publication first."
-            bullets={['Rigorous journalism', 'Disciplined research', 'Market-grounded analysis']}
-          />
-        </section>
-      </main>
+          <hr className="section-rule" />
 
-      <Footer sections={footerSections} />
-    </div>
+          <section className="section split-band" id="cities">
+            <div className="section-heading">
+              <p className="eyebrow">Cities</p>
+              <h2>Geography-led analysis with region-specific search and reporting depth.</h2>
+            </div>
+            <Cities cities={cities} />
+          </section>
+
+          <hr className="section-rule" />
+
+          <section className="section split-section" id="conversations">
+            <div className="section-heading">
+              <p className="eyebrow">Conversations</p>
+              <h2>Interviews, opinions, and debate from across the industry.</h2>
+            </div>
+            <Conversations items={conversations} />
+          </section>
+
+          <hr className="section-rule" />
+
+          <section className="section split-section" id="events">
+            <div className="section-heading">
+              <p className="eyebrow">Events</p>
+              <h2>Upcoming forums, archived sessions, and newsroom-led industry engagement.</h2>
+            </div>
+            <Events items={events} />
+          </section>
+
+          <hr className="section-rule" />
+
+          <section className="section approach-section" id="about">
+            <About links={aboutLinks} />
+            <ContactCard
+              title="Independent journalism with accountability built into the frame."
+              description="In an industry often shaped by promotion, Top Storey is positioned as an analytical newsroom. The product should feel like a publication first."
+              bullets={['Rigorous journalism', 'Disciplined research', 'Market-grounded analysis']}
+            />
+          </section>
+        </main>
+
+        <Footer sections={footerSections} />
+      </div>
+    </>
   )
 }
