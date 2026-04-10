@@ -12,7 +12,7 @@ export function ContactCard({ title, description, bullets }: ContactCardProps) {
         <h2>{title}</h2>
       </div>
       <p className="lead">{description}</p>
-      <div className="bullet-card compact-card">
+      <div className="editorial-list">
         {bullets.map((item) => (
           <p key={item}>{item}</p>
         ))}

@@ -12,6 +12,7 @@ export function Navigation({ items }: NavigationProps) {
   return (
     <nav className="section-nav" aria-label="Primary">
       <div className="nav-links">
+        <span className="nav-group-label">Newsroom</span>
         {items.map((item) => (
           <div
             key={item.label}

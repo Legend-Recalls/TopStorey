@@ -15,7 +15,16 @@ export function Masthead() {
     <>
       <div className="masthead-date-line">
         <span>{dateStr}</span>
-        <span>Edition 247</span>
+        <span className="date-line-right">
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}
+          >
+            {mode === 'light' ? '☽' : '☀'}
+          </button>
+        </span>
       </div>
       <div className="masthead">
         <div className="brand">
@@ -31,14 +40,6 @@ export function Masthead() {
             <input type="search" placeholder="Search stories, markets, cities…" />
           </label>
           <a href="#" className="sign-in-link">Sign In</a>
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}
-          >
-            {mode === 'light' ? '☽' : '☀'}
-          </button>
           <button type="button" className="button button-primary subscribe-button">
             Subscribe
           </button>

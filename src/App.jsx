@@ -7,7 +7,7 @@ import {
   StoryList,
   MostRead,
   Markets,
-  Cities,
+  PropertySearch,
   Conversations,
   Events,
   About,
@@ -15,7 +15,7 @@ import {
   Footer,
 } from './components'
 
-const latestStories = [
+const featuredStories = [
   {
     category: 'Policy & Regulation',
     image:
@@ -69,12 +69,6 @@ const sideLeadStories = [
   },
 ]
 
-const featuredReports = [
-  'Research-driven reports from journalists, analysts, and sector specialists.',
-  'Data-backed perspectives on developers, projects, capital flows, and structural shifts.',
-  'Long-form analysis designed to outlast the news cycle.',
-]
-
 const marketColumns = [
   {
     heading: 'Residential',
@@ -97,17 +91,6 @@ const marketColumns = [
     heading: 'Other Asset Classes',
     items: ['Co-living', 'Co-working', 'Student Housing'],
   },
-]
-
-const cities = [
-  'Delhi/NCR',
-  'Mumbai Metropolitan Region',
-  'Bengaluru',
-  'Hyderabad',
-  'Pune',
-  'Chennai',
-  'Kolkata',
-  'Emerging Markets',
 ]
 
 const conversations = [
@@ -204,9 +187,8 @@ const navItems = [
     ],
   },
   {
-    label: 'Cities',
-    href: '#cities',
-    children: cities,
+    label: 'Search',
+    href: '#search',
   },
   {
     label: 'Conversations',
@@ -285,52 +267,32 @@ export default function App() {
     <>
       <ScrollProgress />
       <div className="page-shell">
-        <header className="hero">
+        <header className="hero" id="latest">
           <Masthead />
           <NewsTicker items={tickerItems} />
           <Navigation items={navItems} />
           <HeroSection leadStory={leadStory} sideStories={sideLeadStories} />
         </header>
 
-        <main className="news-layout">
-          <section className="section main-column" id="latest">
-            <div className="section-heading">
-              <p className="eyebrow">Latest</p>
-              <h2>The most recent stories and market updates across the real estate sector.</h2>
-            </div>
-            <StoryList stories={latestStories} />
-          </section>
-
-          <aside className="sidebar-column">
-            <section className="section sidebar-section">
-              <div className="section-heading compact-heading">
-                <p className="eyebrow">Most Read</p>
-                <h2>What is resonating with readers right now.</h2>
-              </div>
-              <MostRead items={mostRead} />
-              <a href="#featured" className="sidebar-link">
-                View all trending stories →
-              </a>
-            </section>
-          </aside>
-
-          <hr className="section-rule" />
-
-          <section className="section split-band" id="featured">
+        <main className="content-flow">
+          <section className="section" id="featured">
             <div className="section-heading">
               <p className="eyebrow">Featured</p>
-              <h2>Research-led reports and insight grounded in evidence, not industry theatre.</h2>
+              <h2>The most important stories and market updates across the real estate sector.</h2>
             </div>
-            <div className="bullet-card">
-              {featuredReports.map((item) => (
-                <p key={item}>{item}</p>
-              ))}
+            <StoryList stories={featuredStories} />
+          </section>
+
+          <section className="trending-strip">
+            <div className="trending-strip-header">
+              <span className="eyebrow">Trending Now</span>
             </div>
+            <MostRead items={mostRead} />
           </section>
 
           <hr className="section-rule" />
 
-          <section className="section" id="markets" style={{ gridColumn: '1 / -1' }}>
+          <section className="section" id="markets">
             <div className="section-heading">
               <p className="eyebrow">Markets</p>
               <h2>Coverage organised by asset class, cycle, and sector dynamics.</h2>
@@ -340,12 +302,12 @@ export default function App() {
 
           <hr className="section-rule" />
 
-          <section className="section split-band" id="cities">
+          <section className="section" id="search">
             <div className="section-heading">
-              <p className="eyebrow">Cities</p>
-              <h2>Geography-led analysis with region-specific search and reporting depth.</h2>
+              <p className="eyebrow">Search Properties</p>
+              <h2>Find your next investment across India's top real estate markets.</h2>
             </div>
-            <Cities cities={cities} />
+            <PropertySearch />
           </section>
 
           <hr className="section-rule" />
