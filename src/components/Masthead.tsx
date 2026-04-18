@@ -1,4 +1,5 @@
 import { useTheme } from '../theme/ThemeContext'
+import { Search } from 'lucide-react'
 
 export function Masthead() {
   const { mode, toggleTheme } = useTheme()
@@ -37,6 +38,7 @@ export function Masthead() {
 
         <div className="masthead-actions">
           <label className="search-shell" aria-label="Search">
+            <Search className="search-icon" size={18} />
             <input type="search" placeholder="Search stories, markets, cities…" />
           </label>
           <a href="#" className="sign-in-link">Sign In</a>

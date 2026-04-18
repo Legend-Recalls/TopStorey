@@ -164,6 +164,20 @@ const navItems = [
   { label: 'Latest', href: '#latest' },
   { label: 'Featured', href: '#featured' },
   {
+    label: 'Cities',
+    href: '#cities',
+    children: [
+      'Delhi/NCR',
+      'Mumbai Metropolitan Region',
+      'Bengaluru',
+      'Hyderabad',
+      'Pune',
+      'Chennai',
+      'Kolkata',
+      'Emerging Markets',
+    ],
+  },
+  {
     label: 'Markets',
     href: '#markets',
     children: [
@@ -185,10 +199,6 @@ const navItems = [
       'Co-working',
       'Student Housing',
     ],
-  },
-  {
-    label: 'Search',
-    href: '#search',
   },
   {
     label: 'Conversations',
