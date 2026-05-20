@@ -1,0 +1,33 @@
+/* ==========================================================================
+   DARK MODE OVERRIDES
+   The ThemeContext sets CSS vars; these handle hardcoded colors.
+   ========================================================================== */
+
+[data-theme="dark"] .brand-mark {
+  border-color: rgba(196, 86, 74, 0.36);
+  background: linear-gradient(135deg, #2c1915 0%, #171411 100%);
+}
+
+[data-theme="dark"] .section-nav,
+.section-nav[data-dark="true"] {
+  border-top-color: rgba(196, 86, 74, 0.2);
+  background:
+    linear-gradient(180deg, rgba(11, 11, 10, 0.96), rgba(11, 11, 10, 0.9)),
+    var(--color-background);
+}
+
+[data-theme="dark"] .dropdown-menu {
+  border-color: rgba(196, 86, 74, 0.24);
+  background:
+    linear-gradient(135deg, rgba(196, 86, 74, 0.12), transparent 44%),
+    linear-gradient(180deg, rgba(26, 24, 21, 0.98), rgba(20, 19, 17, 0.98));
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.42);
+}
+
+[data-theme="dark"] .filter-chip:hover {
+  background: var(--color-border-strong);
+}
+
+[data-theme="dark"] .search-city-select select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236e675e'/%3E%3C/svg%3E");
+}

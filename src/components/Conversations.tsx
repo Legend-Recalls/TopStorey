@@ -1,3 +1,5 @@
+import { useVisibleCount } from '../hooks/useVisibleCount'
+
 interface ConversationItem {
   title: string
   type?: string
@@ -13,6 +15,8 @@ interface ConversationsProps {
 export function Conversations({ items }: ConversationsProps) {
   const featured = items[0]
   const rest = items.slice(1)
+  const visibleCount = useVisibleCount(rest.length)
+  const visibleRest = rest.slice(0, visibleCount)
 
   return (
     <article className="feature-module">
@@ -35,9 +39,9 @@ export function Conversations({ items }: ConversationsProps) {
         </div>
       )}
 
-      {rest.length > 0 && (
+      {visibleRest.length > 0 && (
         <div className="module-list">
-          {rest.map((item) => (
+          {visibleRest.map((item) => (
             <article key={item.title} className="module-list-item">
               <span className="play-icon">▶</span>
               <div>

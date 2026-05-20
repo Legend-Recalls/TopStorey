@@ -1,0 +1,146 @@
+/* ==========================================================================
+   HERO SECTION — Flush grid, sharp images
+   ========================================================================== */
+
+.top-news-band {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.newsroom-hero {
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.85fr);
+  align-items: stretch;
+  min-height: clamp(300px, calc(100vh - 280px), 440px);
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+/* ---- Story cards ---- */
+
+.lead-story-card,
+.side-story-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  height: 100%;
+  border-radius: var(--radius-md);
+  border: none;
+  transition: transform 200ms ease;
+  cursor: pointer;
+  contain: paint;
+}
+
+.lead-story-card:hover,
+.side-story-card:hover {
+  transform: none;
+}
+
+.lead-story-card {
+  min-height: clamp(320px, calc(100vh - 290px), 460px);
+}
+
+.side-story-panel {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.story-media-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.side-story-card::before,
+.lead-story-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 30%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* ---- Story copy overlay ---- */
+
+.top-story-copy {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.5rem 1.25rem;
+  color: #fff;
+  z-index: 1;
+}
+
+.top-story-kicker {
+  display: inline-flex;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(139, 46, 36, 0.85);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.lead-story-card h1,
+.side-story-card h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-serif);
+  letter-spacing: -0.03em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.lead-story-card h1 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  line-height: 1.05;
+  max-width: 16ch;
+}
+
+.side-story-card h2 {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.18;
+  max-width: 24ch;
+}
+
+.lead-summary {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-prose);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 48ch;
+}
+
+.read-full-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 150ms ease;
+}
+
+.read-full-link:hover {
+  color: #fff;
+}

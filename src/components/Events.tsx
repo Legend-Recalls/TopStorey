@@ -1,3 +1,5 @@
+import { useVisibleCount } from '../hooks/useVisibleCount'
+
 interface Event {
   title: string
   label?: string
@@ -17,6 +19,8 @@ interface EventsProps {
 export function Events({ items }: EventsProps) {
   const featured = items[0]
   const upcoming = items.slice(1)
+  const visibleCount = useVisibleCount(upcoming.length)
+  const visibleUpcoming = upcoming.slice(0, visibleCount)
 
   return (
     <article className="feature-module event-module">
@@ -58,9 +62,9 @@ export function Events({ items }: EventsProps) {
       )}
 
       {/* Upcoming list — same slot as the podcast list items in Conversations */}
-      {upcoming.length > 0 && (
+      {visibleUpcoming.length > 0 && (
         <div className="module-list">
-          {upcoming.map((event) => (
+          {visibleUpcoming.map((event) => (
             <article key={event.title} className="module-list-item">
               <div className="date-badge">
                 <span>{event.month}</span>

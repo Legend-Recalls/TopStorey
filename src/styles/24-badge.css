@@ -1,0 +1,78 @@
+/* ==========================================================================
+   BADGE — Pill-style label component
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Sizes */
+.badge-sm {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.badge-md {
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8125rem;
+}
+
+.badge-lg {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9375rem;
+}
+
+/* Variants */
+.badge-default {
+  background: var(--color-surface, #f5f2ed);
+  color: var(--color-text-secondary, #55524d);
+  border: 1px solid var(--color-border, #e0dbd4);
+}
+
+.badge-success {
+  background: #e6f5ec;
+  color: #1a6b33;
+  border: 1px solid #b8e0c8;
+}
+
+.badge-warning {
+  background: #fef7e6;
+  color: #7a5a00;
+  border: 1px solid #f0dca0;
+}
+
+.badge-error {
+  background: #fde8e8;
+  color: #8b1a1a;
+  border: 1px solid #f0b8b8;
+}
+
+/* Dark mode variants */
+[data-theme="dark"] .badge-default {
+  background: var(--color-surface, #141311);
+  color: var(--color-text-secondary, #b9afa1);
+  border-color: var(--color-border, #2d2924);
+}
+
+[data-theme="dark"] .badge-success {
+  background: rgba(26, 107, 51, 0.2);
+  color: #6bcb77;
+  border-color: rgba(26, 107, 51, 0.35);
+}
+
+[data-theme="dark"] .badge-warning {
+  background: rgba(122, 90, 0, 0.2);
+  color: #f0c040;
+  border-color: rgba(122, 90, 0, 0.35);
+}
+
+[data-theme="dark"] .badge-error {
+  background: rgba(139, 26, 26, 0.2);
+  color: #f06060;
+  border-color: rgba(139, 26, 26, 0.35);
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Global Real Estate Leaders Summit 2024",
+    "label": "Live Summit",
+    "location": "London, UK (Hybrid)",
+    "description": "Join 500+ institutional investors and developers for a two-day macro-economic briefing.",
+    "cta": "Register Now",
+    "countdown": [
+      { "value": "14", "unit": "Days" },
+      { "value": "08", "unit": "Hours" },
+      { "value": "45", "unit": "Mins" },
+      { "value": "22", "unit": "Secs" }
+    ],
+    "featured": true,
+    "date": "2026-06-01"
+  },
+  {
+    "month": "Nov",
+    "day": "12",
+    "title": "Webinar: Asian Markets Q4 Outlook",
+    "meta": "Virtual · Free for subscribers",
+    "featured": true,
+    "date": "2026-11-12"
+  },
+  {
+    "month": "Jun",
+    "day": "20",
+    "title": "India Real Estate Conclave 2026",
+    "label": "Conference",
+    "location": "Mumbai, India",
+    "description": "India's largest annual gathering of developers, investors, and policymakers.",
+    "meta": "In-person · Invitation only",
+    "featured": true,
+    "date": "2026-06-20"
+  },
+  {
+    "month": "Jul",
+    "day": "05",
+    "title": "Roundtable: ESG Compliance in Indian Real Estate",
+    "meta": "Virtual · Open to all",
+    "featured": true,
+    "date": "2026-07-05"
+  },
+  {
+    "month": "Jul",
+    "day": "18",
+    "title": "Workshop: Reading Land Revenue Records for Due Diligence",
+    "meta": "Bengaluru · ₹2,500 fee",
+    "featured": true,
+    "date": "2026-07-18"
+  },
+  {
+    "month": "Aug",
+    "day": "02",
+    "title": "Webinar: Co-living Demand Trends Across Tier-1 Cities",
+    "meta": "Virtual · Free for subscribers",
+    "featured": true,
+    "date": "2026-08-02"
+  },
+  {
+    "month": "Sep",
+    "day": "10",
+    "title": "MIPIM Asia Pacific 2026",
+    "label": "Trade Fair",
+    "location": "Hong Kong",
+    "description": "The leading property leaders summit connecting Asia-Pacific markets.",
+    "meta": "In-person · Delegate pass required",
+    "featured": false,
+    "date": "2026-09-10"
+  },
+  {
+    "month": "Sep",
+    "day": "25",
+    "title": "Panel: How RERA Changed Consumer Confidence",
+    "meta": "Virtual · Free for subscribers",
+    "featured": false,
+    "date": "2026-09-25"
+  },
+  {
+    "month": "Oct",
+    "day": "14",
+    "title": "Top Storey Annual Awards 2026",
+    "label": "Awards Ceremony",
+    "location": "New Delhi, India",
+    "description": "Recognising excellence in real estate journalism, research, and market transparency.",
+    "meta": "In-person · By invitation",
+    "featured": false,
+    "date": "2026-10-14"
+  },
+  {
+    "month": "Dec",
+    "day": "03",
+    "title": "Year-End Outlook: What 2027 Holds for Indian Real Estate",
+    "meta": "Virtual · Free for subscribers",
+    "featured": false,
+    "date": "2026-12-03"
+  }
+]

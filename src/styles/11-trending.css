@@ -1,0 +1,89 @@
+/* ==========================================================================
+   TRENDING STRIP — Full-width horizontal Most Read
+   ========================================================================== */
+
+.trending-strip {
+  padding: 1.5rem 0 1rem;
+  border-top: 2px solid var(--color-foreground);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.trending-strip-header {
+  margin-bottom: 1rem;
+}
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.trending-card {
+  padding: 0 1.5rem;
+  border-left: 1px solid var(--color-border);
+  transition: background-color 150ms ease;
+  cursor: pointer;
+}
+
+.trending-card:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.trending-card:last-child {
+  padding-right: 0;
+}
+
+.trending-card:hover {
+  background-color: var(--color-surface);
+}
+
+.trending-rank-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.trending-rank {
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  padding-top: 0.2rem;
+}
+
+.trending-label {
+  display: inline-flex;
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(139, 46, 36, 0.2);
+}
+
+.trending-title {
+  margin: 0 0 0.35rem;
+  color: var(--color-foreground);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.trending-meta {
+  display: block;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}

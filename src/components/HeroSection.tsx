@@ -35,10 +35,12 @@ export function HeroSection({ leadStory, sideStories = [] }: HeroSectionProps) {
 
 export function LeadStory({ title, image, category, summary }: LeadStoryData) {
   return (
-    <article
-      className="lead-story-card"
-      style={{ backgroundImage: `url(${image})` }}
-    >
+    <article className="lead-story-card">
+      <div
+        className="story-media-layer"
+        style={{ backgroundImage: `url(${image})` }}
+        aria-hidden="true"
+      />
       <div className="top-story-copy">
         <span className="top-story-kicker">{category}</span>
         <h1>{title}</h1>
@@ -53,10 +55,12 @@ export function LeadStory({ title, image, category, summary }: LeadStoryData) {
 
 export function SideStory({ title, image, category }: SideStoryData) {
   return (
-    <article
-      className="side-story-card"
-      style={{ backgroundImage: `url(${image})` }}
-    >
+    <article className="side-story-card">
+      <div
+        className="story-media-layer"
+        style={{ backgroundImage: `url(${image})` }}
+        aria-hidden="true"
+      />
       <div className="top-story-copy">
         <span className="top-story-kicker">{category}</span>
         <h2>{title}</h2>

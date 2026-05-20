@@ -1,0 +1,55 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  font-family: 'Manrope', 'Inter', -apple-system, sans-serif;
+  color: var(--color-foreground);
+  background: var(--color-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ---- Palette ---- */
+  --color-primary: #8b2e24;
+  --color-primary-hover: #a33d32;
+  --color-secondary: #4f7ce5;
+  --color-background: #faf8f5;
+  --color-foreground: #1a1816;
+  --color-surface: #f5f2ed;
+  --color-surface-strong: #fff;
+  --color-border: #e0dbd4;
+  --color-border-strong: #c8c0b4;
+  --color-rule: #d4cec5;
+  --color-text-primary: #1a1816;
+  --color-text-secondary: #55524d;
+  --color-text-muted: #8a837a;
+
+  /* ---- Typography ---- */
+  --font-sans: 'Manrope', 'Inter', -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-prose: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+
+  /* ---- Ticker ---- */
+  --ticker-bg: var(--color-surface);
+
+  /* ---- Spacing ---- */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* ---- Radius (minimal) ---- */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+
+  /* ---- Shadows (very subtle, almost Bloomberg-flat) ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+}

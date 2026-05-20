@@ -1,19 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import {
   Masthead,
-  Navigation,
   NewsTicker,
   HeroSection,
-  StoryList,
-  MostRead,
+  FeaturedTrendingSection,
+  StudioSection,
   Markets,
   PropertySearch,
-  Conversations,
-  Events,
   About,
   ContactCard,
   Footer,
 } from './components'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useSectionSnap } from './hooks/useSectionSnap'
+import { useScrollSnap } from './hooks/useScrollSnap'
+
+gsap.registerPlugin(ScrollTrigger)
+
+// Sections in vertical DOM order. The hook re-measures their real top on every
+// keystroke, so unequal section heights and viewport changes are handled
+// dynamically — no `index * window.innerHeight` math.
+const SNAP_SECTION_IDS = ['latest', 'featured', 'markets', 'search', 'studio', 'about']
 
 const featuredStories = [
   {
@@ -72,24 +80,58 @@ const sideLeadStories = [
 const marketColumns = [
   {
     heading: 'Residential',
-    items: ['Affordable', 'Luxury/Premium', 'Second Homes', 'Senior Living', 'Farmhouses'],
+    eyebrow: 'Asset Class 01',
+    framing: 'Where households, capital, and policy converge — the deepest, most cyclical pool we cover.',
+    image:
+      'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1400&q=80',
+    items: [
+      { label: 'Affordable', note: 'Mass-market, sub-₹50L' },
+      { label: 'Luxury / Premium', note: '₹5Cr+ stock' },
+      { label: 'Second Homes', note: 'Leisure & hill' },
+      { label: 'Senior Living', note: 'Care-integrated' },
+      { label: 'Farmhouses', note: 'Peri-urban land plays' },
+    ],
+    stat: { value: '47%', label: 'of total coverage' },
   },
   {
     heading: 'Commercial',
-    items: ['Retail', 'Malls/High Streets', 'REITs'],
+    eyebrow: 'Asset Class 02',
+    framing: 'Yield, scale, institutionalisation — the segment driving REIT-listed liquidity.',
+    image:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80',
+    items: [
+      { label: 'Retail', note: 'High-street & strata' },
+      { label: 'Malls / High Streets', note: 'Anchored centres' },
+      { label: 'REITs', note: 'Listed real estate' },
+    ],
+    stat: { value: '₹1.4T', label: 'tracked AUM' },
   },
   {
     heading: 'Analytical Coverage',
+    eyebrow: 'Asset Class 03',
+    framing: 'Cross-cutting themes — the variables shaping every other segment we cover.',
+    image:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80',
     items: [
-      'Mixed-use Development',
-      'Land Development',
-      'Policy & Regulation',
-      'Trends & Cycles',
+      { label: 'Mixed-use Development', note: 'Vertical urbanism' },
+      { label: 'Land Development', note: 'Title, FAR, FSI' },
+      { label: 'Policy & Regulation', note: 'RERA, GST, FDI' },
+      { label: 'Trends & Cycles', note: 'Macro & demand' },
     ],
+    stat: { value: '24', label: 'sub-themes mapped' },
   },
   {
     heading: 'Other Asset Classes',
-    items: ['Co-living', 'Co-working', 'Student Housing'],
+    eyebrow: 'Asset Class 04',
+    framing: 'Operator-led, lease-light — the segments redefining how space gets used.',
+    image:
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80',
+    items: [
+      { label: 'Co-living', note: 'Managed residential' },
+      { label: 'Co-working', note: 'Flex office' },
+      { label: 'Student Housing', note: 'Tier-1 university hubs' },
+    ],
+    stat: { value: '3.2x', label: 'YoY coverage growth' },
   },
 ]
 
@@ -273,76 +315,73 @@ function ScrollProgress() {
 }
 
 export default function App() {
+  // Dynamic keyboard section navigation (ArrowUp/Down, PgUp/Dn, Home/End, Space)
+  // Re-measures every section on each keypress, so unequal section heights and
+  // viewport resizes can't desync the jump.
+  useSectionSnap(SNAP_SECTION_IDS)
+
+  // Wheel / trackpad / touch smooth snap. The hook detects when the user is
+  // inside the pinned GSAP horizontal-scrub section and steps aside, so
+  // ScrollTrigger keeps full control of that region.
+  useScrollSnap(SNAP_SECTION_IDS)
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      // --- Reveal animations ---
+      ScrollTrigger.batch('.reveal-item', {
+        start: 'top 85%',
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.15,
+            duration: 0.8,
+            ease: 'power3.out',
+          })
+        },
+      })
+    })
+
+    // --- Smooth scroll snap after GSAP pinned section finishes ---
+    // No manual scroll hijacking — let GSAP handle pinned scrub naturally
+
+    return () => {
+      ctx.revert()
+    }
+  }, [])
+
   return (
     <>
       <ScrollProgress />
       <div className="page-shell">
-        <header className="hero" id="latest">
-          <Masthead />
+        {/* Masthead is a direct child of page-shell — position:sticky works across full page */}
+        <Masthead navItems={navItems} />
+
+        <header className="hero snap-section" id="latest">
           <NewsTicker items={tickerItems} />
-          <Navigation items={navItems} />
           <HeroSection leadStory={leadStory} sideStories={sideLeadStories} />
         </header>
 
         <main className="content-flow">
-          <section className="section" id="featured">
-            <div className="section-heading">
-              <p className="eyebrow">Featured</p>
-              <h2>The most important stories and market updates across the real estate sector.</h2>
-            </div>
-            <StoryList stories={featuredStories} />
-          </section>
+          {/* GSAP horizontal scroll section — has its own pin */}
+          <FeaturedTrendingSection featured={featuredStories} trending={mostRead} />
 
-          <section className="trending-strip">
-            <div className="trending-strip-header">
-              <span className="eyebrow">Trending Now</span>
-            </div>
-            <MostRead items={mostRead} />
-          </section>
+          {/* GSAP horizontal scroll section — is its own snap-section */}
+          <Markets columns={marketColumns} />
 
-          <hr className="section-rule" />
-
-          <section className="section" id="markets">
-            <div className="section-heading">
-              <p className="eyebrow">Markets</p>
-              <h2>Coverage organised by asset class, cycle, and sector dynamics.</h2>
-            </div>
-            <Markets columns={marketColumns} />
-          </section>
-
-          <hr className="section-rule" />
-
-          <section className="section" id="search">
-            <div className="section-heading">
+          <section className="section snap-section" id="search">
+            <div className="section-heading reveal-item">
               <p className="eyebrow">Search Properties</p>
               <h2>Find your next investment across India's top real estate markets.</h2>
             </div>
-            <PropertySearch />
-          </section>
-
-          <hr className="section-rule" />
-
-          <section className="section split-section" id="conversations">
-            <div className="section-heading">
-              <p className="eyebrow">Conversations</p>
-              <h2>Interviews, opinions, and debate from across the industry.</h2>
+            <div className="reveal-item">
+              <PropertySearch />
             </div>
-            <Conversations items={conversations} />
           </section>
 
-          <hr className="section-rule" />
+          <StudioSection conversations={conversations} events={events} />
 
-          <section className="section split-section" id="events">
-            <div className="section-heading">
-              <p className="eyebrow">Events</p>
-              <h2>Upcoming forums, archived sessions, and newsroom-led industry engagement.</h2>
-            </div>
-            <Events items={events} />
-          </section>
-
-          <hr className="section-rule" />
-
-          <section className="section approach-section" id="about">
+          <section className="section snap-section approach-section" id="about">
             <About links={aboutLinks} />
             <ContactCard
               title="Independent journalism with accountability built into the frame."

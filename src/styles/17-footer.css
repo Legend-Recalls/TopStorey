@@ -1,0 +1,134 @@
+/* ==========================================================================
+   FOOTER — Ruled, dense
+   ========================================================================== */
+
+.site-footer {
+  margin-top: 2rem;
+  /* Match the horizontal rhythm of .snap-section so the footer
+     doesn't run flush to the viewport edges. */
+  padding: 1.5rem clamp(1.5rem, 4vw, 4rem) 0.75rem;
+  border-top: 2px solid var(--color-foreground);
+  background: transparent;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  /* Belt-and-braces: prevent any descendant from leaking past the shell. */
+  overflow-x: clip;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.footer-brand-mark {
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.footer-description {
+  max-width: 36ch;
+  margin: 0 0 1rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-prose);
+  line-height: 1.6;
+  font-size: 0.88rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.footer-socials a {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  transition: all 150ms ease;
+}
+
+.footer-socials a:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.footer-column {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.footer-column a,
+.footer-description {
+  /* Long unbreakable strings (URLs, emails) must not force horizontal overflow. */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.footer-column h3 {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 700;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.footer-column a {
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  transition: color 150ms ease;
+}
+
+.footer-column a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.back-to-top {
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 150ms ease;
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  color: var(--color-primary-hover);
+}

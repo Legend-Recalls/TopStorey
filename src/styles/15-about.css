@@ -1,0 +1,47 @@
+/* ==========================================================================
+   ABOUT / APPROACH
+   ========================================================================== */
+
+.approach-section {
+  /* About + Contact share one snap section, laid out side-by-side. */
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+  gap: 1.5rem;
+  /* Match the studio-section: start content from the top of the panel
+     and reserve room for the fixed 2.75rem masthead bar so neither
+     the About eyebrow nor the Contact heading is overlapped. */
+  justify-content: flex-start;
+  padding-top: calc(clamp(2rem, 4vh, 4rem) + 2.75rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.approach-panel,
+.contact-card {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-strong);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.contact-card h2 {
+  font-family: var(--font-serif);
+  line-height: 1.05;
+}
+
+.service-card {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-strong);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  min-height: 100%;
+}
+
+.service-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+
+.service-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}

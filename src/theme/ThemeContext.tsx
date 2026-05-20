@@ -42,20 +42,20 @@ export const lightTheme: Theme = {
 
 export const darkTheme: Theme = {
   colors: {
-    primary: '#c4564a',
-    primaryHover: '#d4675b',
+    primary: '#df6255',
+    primaryHover: '#ee7568',
     secondary: '#6b9fff',
-    background: '#0e0d0b',
-    foreground: '#e8e4dc',
-    surface: '#1a1816',
-    surfaceStrong: '#222018',
-    border: '#2e2b26',
-    borderStrong: '#3d3a34',
-    rule: '#2e2b26',
+    background: '#0b0b0a',
+    foreground: '#f0ece4',
+    surface: '#141311',
+    surfaceStrong: '#1a1815',
+    border: '#2d2924',
+    borderStrong: '#484137',
+    rule: '#2d2924',
     text: {
-      primary: '#e8e4dc',
-      secondary: '#a89f92',
-      muted: '#6e675e',
+      primary: '#f0ece4',
+      secondary: '#b9afa1',
+      muted: '#82786b',
     },
   },
 }
@@ -82,6 +82,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement
     const t = theme.colors
 
+    root.dataset.theme = mode
     root.style.setProperty('--color-primary', t.primary)
     root.style.setProperty('--color-primary-hover', t.primaryHover)
     root.style.setProperty('--color-secondary', t.secondary)
@@ -99,16 +100,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Ticker
     root.style.setProperty('--ticker-bg', t.surface)
 
-    // Sticky nav bg
-    if (mode === 'dark') {
-      document.querySelectorAll('.section-nav').forEach((el) => {
-        ;(el as HTMLElement).style.background = 'rgba(14, 13, 11, 0.92)'
-      })
-    } else {
-      document.querySelectorAll('.section-nav').forEach((el) => {
-        ;(el as HTMLElement).style.background = 'rgba(250, 248, 245, 0.92)'
-      })
-    }
   }, [theme, mode])
 
   return (

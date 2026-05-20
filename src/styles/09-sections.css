@@ -1,0 +1,68 @@
+/* ==========================================================================
+   SECTION HEADINGS
+   ========================================================================== */
+
+.section {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Full-viewport panel for GSAP snap — NO CSS scroll-snap-align */
+.snap-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: clamp(1.5rem, 4vw, 4rem);
+  padding-block: clamp(2rem, 4vh, 4rem);
+  box-sizing: border-box;
+}
+
+.section-heading {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.contact-card h2 {
+  font-family: var(--font-serif);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.section-heading h2 {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  max-width: 22ch;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+.compact-heading h2 {
+  max-width: 14ch;
+  font-size: clamp(1.3rem, 1.7vw, 1.7rem);
+}
+
+/* Section ruled divider */
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0;
+  grid-column: 1 / -1;
+}
+
+.section-rule-strong {
+  border-top: 2px solid var(--color-foreground);
+}

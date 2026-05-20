@@ -1,0 +1,418 @@
+/* ==========================================================================
+   FEATURED & TRENDING — GSAP Horizontal Scroll Pin Layout
+   The trending track scrolls horizontally while the section is pinned.
+   After horizontal scroll completes, GSAP vertical snap jumps to next section.
+   ========================================================================== */
+
+.featured-trending-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-background);
+  height: 100vh;
+  height: 100svh;
+  padding-block: clamp(1.5rem, 3vh, 3rem);
+  padding-inline: clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+}
+
+.featured-trending-grid {
+  display: flex;
+  height: 100%;
+  gap: clamp(1rem, 3vw, 3rem);
+}
+
+/* Left: Static Featured Column */
+.featured-column {
+  flex: 0 0 clamp(300px, 35vw, 450px);
+  padding-left: clamp(1rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-column .section-heading {
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
+}
+
+.featured-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vh, 1.5rem);
+}
+
+.featured-column .story-card {
+  display: grid;
+  grid-template-columns: auto 120px 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.featured-column .story-card:last-child {
+  border-bottom: none;
+}
+
+.featured-column .story-image {
+  width: 100%;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+}
+
+.featured-column .story-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+
+.featured-column .story-body p {
+  display: none; /* Save space */
+}
+
+/* Right: Horizontal Scrolling Track */
+.trending-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.trending-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+}
+
+.trending-track-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.trending-track {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: max-content;
+  will-change: transform;
+}
+
+.trending-card {
+  width: clamp(260px, 20vw, 320px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.trending-card:hover {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-strong);
+}
+
+.trending-rank-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trending-rank {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.trending-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.trending-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.trending-meta {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   STUDIO SECTION (Conversations + Events)
+   Viewport-constrained: fits within 100vh snap section without overflow.
+   ========================================================================== */
+
+.studio-section {
+  /* Override snap-section centering so content starts from top and
+     stays within the viewport bounds. */
+  justify-content: flex-start;
+  overflow: hidden;
+  /* Offset for the fixed transparent masthead bar (2.75rem) so the
+     section heading isn't visually clipped/overlapped by it. */
+  padding-top: calc(clamp(2rem, 4vh, 4rem) + 2.75rem);
+}
+
+.studio-section .section-heading {
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
+}
+
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  flex: 1;
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .studio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.studio-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+.studio-column-head {
+  margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-foreground);
+}
+
+.studio-column-head h3 {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.studio-hero-card {
+  position: relative;
+  /* Constrain to a fraction of viewport so the column stays inside 100vh */
+  min-height: clamp(180px, 26vh, 280px);
+  max-height: 32vh;
+  background-color: var(--color-surface);
+  margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.studio-hero-card.has-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+.studio-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: clamp(1.25rem, 2.5vh, 2rem) 1.25rem 1.25rem;
+  color: #fff;
+}
+
+.studio-overlay h4 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.25;
+  margin-top: 0.4rem;
+}
+
+.studio-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.studio-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.studio-list-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: clamp(0.5rem, 1.2vh, 0.85rem) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.studio-list-item:last-child {
+  border-bottom: none;
+}
+
+.studio-play-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.studio-list-content {
+  min-width: 0;
+}
+
+.studio-list-content h5 {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.3;
+  margin-bottom: 0.2rem;
+}
+
+.studio-list-content p {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Event specific â€” overrides studio-hero-card defaults for content-first flow */
+.studio-hero-card.event-hero {
+  padding: clamp(1rem, 2vh, 1.5rem);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  justify-content: flex-start;
+  gap: 0.5rem;
+  min-height: clamp(180px, 26vh, 280px);
+  max-height: 32vh;
+  overflow: hidden;
+}
+
+.event-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.event-hero h4 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.25;
+  margin: 0.5rem 0;
+}
+
+.event-hero p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.countdown-card {
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  padding: 0.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.countdown-card strong {
+  font-size: 1.2rem;
+  font-family: var(--font-mono);
+}
+
+.countdown-card span {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.event-month {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+.event-day {
+  font-size: 1.2rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   GLOBAL REVEAL ANIMATIONS
+   ========================================================================== */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 920px) {
+  .featured-trending-grid {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .featured-column {
+    flex: none;
+    padding-left: 0;
+  }
+
+  .featured-trending-section {
+    height: auto;
+    min-height: auto;
+  }
+
+  .trending-track {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .trending-card {
+    width: 100%;
+  }
+}

@@ -1,0 +1,461 @@
+/* ==========================================================================
+   MARKETS / COVERAGE ATLAS — Editorial horizontal scroll
+   Static left rail + four chapter panels that scrub past on vertical scroll.
+   Mirrors Trending track language but with numbered chapters, framing, stats, imagery.
+   ========================================================================== */
+
+/* Markets is its own snap-section. Heading + atlas share one 100vh canvas,
+   so the pinned start/end aligns cleanly with the viewport. */
+.markets-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(0.5rem, 1vh, 1rem);
+  /* override .snap-section's vertical centering so the atlas can fill */
+}
+
+.markets-section-heading {
+  display: grid;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+}
+
+.markets-section-heading h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  max-width: 22ch;
+  margin: 0;
+}
+
+.markets-atlas {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  gap: 0;
+  width: 100%;
+  flex: 1 1 auto;          /* fill remaining height inside the section */
+  min-height: 0;           /* allow shrink inside flex column */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-strong);
+  overflow: hidden;
+}
+
+/* ---- Static left rail (stays fixed vertically) ---- */
+
+.markets-rail {
+  position: relative;        /* atlas already fills section; no sticky needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 2.2vw, 2rem);
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+  gap: 1.5rem;
+  height: 100%;              /* fill atlas, which fills section */
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.markets-rail-head .eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.markets-rail-lede {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.markets-rail-progress {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.markets-rail-progress li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  color: var(--color-text-secondary);
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.markets-rail-progress li:last-child {
+  border-bottom: none;
+}
+
+.markets-rail-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+  transition: opacity 220ms ease;
+}
+
+.markets-rail-label {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+.markets-rail-progress li.is-active {
+  color: var(--color-foreground);
+  transform: translateX(4px);
+}
+
+.markets-rail-progress li.is-active .markets-rail-num {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.markets-rail-progress li.is-active .markets-rail-label {
+  font-weight: 600;
+}
+
+.markets-rail-foot {
+  margin: 0;
+  font-family: var(--font-prose);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+.markets-rail-foot span {
+  margin-right: 0.4rem;
+  color: var(--color-primary);
+}
+
+/* ---- Track viewport (clips the horizontal scroll) ---- */
+
+.markets-track-viewport {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.markets-track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+  height: 100%;
+  padding: clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
+  will-change: transform;
+  flex: 1 1 auto;
+}
+
+/* ---- Individual chapter panel ---- */
+
+.market-chapter {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(320px, 32vw, 440px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-strong);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 320ms ease, border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.market-chapter:first-child {
+  margin-left: clamp(1.25rem, 2.2vw, 2rem);
+}
+
+.market-chapter.is-active {
+  border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border));
+  box-shadow:
+    0 1px 0 var(--color-border),
+    0 20px 50px -30px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.market-chapter-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  z-index: -1;
+  transition: opacity 320ms ease;
+}
+
+.market-chapter.is-active .market-chapter-bg {
+  opacity: 0.14;
+}
+
+.market-chapter::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-surface-strong) 55%, transparent) 60%,
+    var(--color-surface-strong) 100%
+  );
+  pointer-events: none;
+}
+
+.market-chapter-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(0.9rem, 1.3vw, 1.3rem);
+  gap: clamp(0.55rem, 0.9vw, 0.85rem);
+}
+
+.market-chapter-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.7rem;
+  padding-bottom: clamp(0.5rem, 0.9vw, 0.8rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.market-chapter-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+}
+
+.market-chapter-head .eyebrow {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.market-chapter-head h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 1.8vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.market-chapter-framing {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(0.92rem, 1vw, 1.02rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+.market-chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.market-chapter-list li {
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-border) 60%, transparent);
+}
+
+.market-chapter-list li:last-child {
+  border-bottom: none;
+}
+
+.market-chapter-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: clamp(0.4rem, 0.7vw, 0.65rem) 0;
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left 220ms ease, color 220ms ease;
+}
+
+.market-chapter-row:hover {
+  padding-left: 0.4rem;
+  color: var(--color-primary);
+}
+
+.market-chapter-label {
+  font-family: var(--font-serif);
+  font-size: clamp(0.92rem, 1vw, 1.02rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--color-foreground);
+}
+
+.market-chapter-row:hover .market-chapter-label {
+  color: var(--color-primary);
+}
+
+.market-chapter-note {
+  font-family: var(--font-prose);
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: var(--color-text-secondary);
+  text-align: right;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.market-chapter-chev {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 220ms ease, transform 220ms ease, color 220ms ease;
+}
+
+.market-chapter-row:hover .market-chapter-chev {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--color-primary);
+}
+
+.market-chapter-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: clamp(0.55rem, 0.9vw, 0.85rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.market-chapter-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  line-height: 1;
+}
+
+.market-chapter-stat-value {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 1.9vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-foreground);
+}
+
+.market-chapter-stat-label {
+  font-family: var(--font-prose);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.market-chapter-cta {
+  font-family: var(--font-prose);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--color-foreground);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: color 220ms ease;
+  white-space: nowrap;
+}
+
+.market-chapter-cta span {
+  display: inline-block;
+  margin-left: 0.3rem;
+  transition: transform 220ms ease;
+}
+
+.market-chapter-cta:hover {
+  color: var(--color-primary);
+}
+
+.market-chapter-cta:hover span {
+  transform: translateX(3px);
+}
+
+.market-chapter-spacer {
+  flex: 0 0 clamp(1.25rem, 2.2vw, 2rem);
+}
+
+/* ---- Narrow viewports: vertical stack, no horizontal scroll ---- */
+
+@media (max-width: 899px) {
+  .markets-atlas {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    min-height: auto;
+  }
+
+  .markets-rail {
+    padding: 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .markets-rail-progress {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    border: none;
+  }
+
+  .markets-rail-progress li {
+    border-bottom: none;
+    border-right: 1px solid var(--color-border);
+    padding: 0.5rem 1rem 0.5rem 0;
+  }
+
+  .markets-rail-progress li:nth-child(even) {
+    border-right: none;
+  }
+
+  .markets-track-viewport {
+    overflow: visible;
+  }
+
+  .markets-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    height: auto;
+  }
+
+  .market-chapter {
+    width: auto;
+  }
+
+  .market-chapter:first-child {
+    margin-left: 0;
+  }
+
+  .market-chapter-spacer {
+    display: none;
+  }
+}

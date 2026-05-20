@@ -1,0 +1,87 @@
+/* ==========================================================================
+   NEWS TICKER — Bloomberg-style live feed
+   ========================================================================== */
+
+.news-ticker {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  overflow: hidden;
+}
+
+.ticker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.85rem 0 0;
+  border-right: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #dc2626;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+.ticker-track {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  contain: paint;
+}
+
+.ticker-content {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+}
+
+.ticker-item {
+  position: relative;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+  font-family: var(--font-prose);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.ticker-item::after {
+  content: '·';
+  display: inline-block;
+  margin-left: 2rem;
+  color: var(--color-text-muted);
+  font-weight: 800;
+  font-size: 1rem;
+  vertical-align: middle;
+}
