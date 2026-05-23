@@ -14,14 +14,13 @@ import {
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useSectionSnap } from './hooks/useSectionSnap'
-import { useScrollSnap } from './hooks/useScrollSnap'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Sections in vertical DOM order. The hook re-measures their real top on every
 // keystroke, so unequal section heights and viewport changes are handled
 // dynamically — no `index * window.innerHeight` math.
-const SNAP_SECTION_IDS = ['latest', 'featured', 'markets', 'search', 'studio', 'about']
+const SNAP_SECTION_IDS = ['latest', 'featured', 'search', 'markets', 'studio', 'about']
 
 const featuredStories = [
   {
@@ -207,71 +206,76 @@ const navItems = [
   { label: 'Featured', href: '#featured' },
   {
     label: 'Cities',
-    href: '#cities',
+    href: '#search',
     children: [
-      'Delhi/NCR',
-      'Mumbai Metropolitan Region',
-      'Bengaluru',
-      'Hyderabad',
-      'Pune',
-      'Chennai',
-      'Kolkata',
-      'Emerging Markets',
+      {
+        label: 'Metro Watch',
+        items: ['Delhi/NCR', 'Mumbai Metropolitan Region', 'Bengaluru', 'Hyderabad'],
+      },
+      {
+        label: 'Growth Corridors',
+        items: ['Pune', 'Chennai', 'Kolkata', 'Emerging Markets'],
+      },
     ],
   },
   {
     label: 'Markets',
     href: '#markets',
     children: [
-      'Residential',
-      'Affordable',
-      'Luxury/Premium',
-      'Second Homes',
-      'Senior Living',
-      'Farmhouses',
-      'Commercial',
-      'Retail',
-      'Malls/High Streets',
-      'REITs',
-      'Mixed-use Development',
-      'Land Development',
-      'Policy & Regulation',
-      'Trends & Cycles',
-      'Co-living',
-      'Co-working',
-      'Student Housing',
+      {
+        label: 'Residential',
+        items: ['Affordable', 'Luxury / Premium', 'Second Homes', 'Senior Living', 'Farmhouses'],
+      },
+      {
+        label: 'Commercial',
+        items: ['Retail', 'Malls / High Streets', 'REITs'],
+      },
+      {
+        label: 'Intelligence',
+        items: ['Mixed-use Development', 'Land Development', 'Policy & Regulation', 'Trends & Cycles'],
+      },
+      {
+        label: 'Alternative Living',
+        items: ['Co-living', 'Co-working', 'Student Housing'],
+      },
     ],
   },
   {
     label: 'Conversations',
     href: '#conversations',
     children: [
-      'Developer Interviews',
-      'Investor Perspectives',
-      'Policy Voices',
-      'Industry Leaders',
-      'Roundtables (Video Podcast)',
+      {
+        label: 'Formats',
+        items: ['Developer Interviews', 'Investor Perspectives', 'Policy Voices'],
+      },
+      {
+        label: 'Studio',
+        items: ['Industry Leaders', 'Roundtables (Video Podcast)'],
+      },
     ],
   },
   {
     label: 'Events',
     href: '#events',
     children: [
-      'Upcoming Events',
-      'Past Events',
-      'Roundtables',
-      'Webinars',
-      'Partnerships / Tie ups / Announcements',
+      {
+        label: 'Calendar',
+        items: ['Upcoming Events', 'Past Events', 'Roundtables', 'Webinars'],
+      },
+      {
+        label: 'Collaborations',
+        items: ['Partnerships / Tie ups / Announcements'],
+      },
     ],
   },
   {
     label: 'About',
     href: '#about',
     children: [
-      'Our Philosophy',
-      'Editorial Policy',
-      'Approach & Methodology',
-      'Contact',
+      {
+        label: 'Inside Top Storey',
+        items: ['Our Philosophy', 'Editorial Policy', 'Approach & Methodology', 'Contact'],
+      },
     ],
   },
 ]
@@ -303,8 +307,8 @@ function ScrollProgress() {
   useEffect(() => {
     const onScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+      const maxScroll = ScrollTrigger.maxScroll(window)
+      const progress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0
       setWidth(progress)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -319,11 +323,6 @@ export default function App() {
   // Re-measures every section on each keypress, so unequal section heights and
   // viewport resizes can't desync the jump.
   useSectionSnap(SNAP_SECTION_IDS)
-
-  // Wheel / trackpad / touch smooth snap. The hook detects when the user is
-  // inside the pinned GSAP horizontal-scrub section and steps aside, so
-  // ScrollTrigger keeps full control of that region.
-  useScrollSnap(SNAP_SECTION_IDS)
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -342,7 +341,6 @@ export default function App() {
       })
     })
 
-    // --- Smooth scroll snap after GSAP pinned section finishes ---
     // No manual scroll hijacking — let GSAP handle pinned scrub naturally
 
     return () => {
@@ -366,9 +364,6 @@ export default function App() {
           {/* GSAP horizontal scroll section — has its own pin */}
           <FeaturedTrendingSection featured={featuredStories} trending={mostRead} />
 
-          {/* GSAP horizontal scroll section — is its own snap-section */}
-          <Markets columns={marketColumns} />
-
           <section className="section snap-section" id="search">
             <div className="section-heading reveal-item">
               <p className="eyebrow">Search Properties</p>
@@ -378,6 +373,9 @@ export default function App() {
               <PropertySearch />
             </div>
           </section>
+
+          {/* GSAP horizontal scroll section — is its own snap-section */}
+          <Markets columns={marketColumns} />
 
           <StudioSection conversations={conversations} events={events} />
 

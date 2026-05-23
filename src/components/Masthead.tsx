@@ -17,6 +17,16 @@ interface MastheadProps {
   navItems?: NavItem[]
 }
 
+function getNavChildCount(children: (string | NavChild)[]) {
+  return children.reduce((count, child) => {
+    if (typeof child === 'string') {
+      return count + 1
+    }
+
+    return count + child.items.length
+  }, 0)
+}
+
 export function Masthead({ navItems = [] }: MastheadProps) {
   const { mode, toggleTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
@@ -173,7 +183,7 @@ export function Masthead({ navItems = [] }: MastheadProps) {
                   </button>
 
                   <div
-                    className={`masthead-dropdown${children.length > 8 ? ' masthead-dropdown-wide' : ''}`}
+                    className={`masthead-dropdown${getNavChildCount(children) > 8 ? ' masthead-dropdown-wide' : ''}`}
                     role="menu"
                     aria-label={`${item.label} subcategories`}
                   >
@@ -258,21 +268,69 @@ export function Masthead({ navItems = [] }: MastheadProps) {
           {/* Navigation links */}
           <nav className="menu-nav" aria-label="Main navigation">
             <ul className="menu-nav-list">
-              {navItems.map((item) => (
-                <li key={item.label} className="menu-nav-item">
-                  <a
-                    href={item.href}
-                    className="menu-nav-link"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleNavClick(item.href)
-                    }}
-                    tabIndex={isOpen ? 0 : -1}
+              {navItems.map((item) => {
+                const children = item.children ?? []
+
+                return (
+                  <li
+                    key={item.label}
+                    className={`menu-nav-item${children.length > 0 ? ' has-children' : ''}`}
                   >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+                    <a
+                      href={item.href}
+                      className="menu-nav-link"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handleNavClick(item.href)
+                      }}
+                      tabIndex={isOpen ? 0 : -1}
+                    >
+                      {item.label}
+                    </a>
+
+                    {children.length > 0 ? (
+                      <div className="menu-subnav" aria-label={`${item.label} subcategories`}>
+                        {children.map((child) =>
+                          typeof child === 'string' ? (
+                            <a
+                              key={`${item.label}-${child}`}
+                              href={item.href}
+                              className="menu-subnav-link"
+                              onClick={(e) => {
+                                e.preventDefault()
+                                handleNavClick(item.href)
+                              }}
+                              tabIndex={isOpen ? 0 : -1}
+                            >
+                              {child}
+                            </a>
+                          ) : (
+                            <div className="menu-subnav-group" key={`${item.label}-${child.label}`}>
+                              <span className="menu-subnav-title">{child.label}</span>
+                              <div className="menu-subnav-links">
+                                {child.items.map((sectionItem) => (
+                                  <a
+                                    key={`${item.label}-${child.label}-${sectionItem}`}
+                                    href={item.href}
+                                    className="menu-subnav-link"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+                                      handleNavClick(item.href)
+                                    }}
+                                    tabIndex={isOpen ? 0 : -1}
+                                  >
+                                    {sectionItem}
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    ) : null}
+                  </li>
+                )
+              })}
             </ul>
           </nav>
         </div>

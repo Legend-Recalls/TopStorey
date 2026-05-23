@@ -6,6 +6,7 @@
 
 .featured-trending-section {
   position: relative;
+  z-index: 1;
   width: 100%;
   overflow: hidden;
   background-color: var(--color-background);
@@ -159,6 +160,7 @@
   /* Offset for the fixed transparent masthead bar (2.75rem) so the
      section heading isn't visually clipped/overlapped by it. */
   padding-top: calc(clamp(2rem, 4vh, 4rem) + 2.75rem);
+  background-color: var(--color-background);
 }
 
 .studio-section .section-heading {

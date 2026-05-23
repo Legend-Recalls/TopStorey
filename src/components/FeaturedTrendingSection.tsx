@@ -63,6 +63,7 @@ export function FeaturedTrendingSection({ featured, trending }: FeaturedTrending
         end: () => `+=${state.total}`,
         pin: true,
         pinType: 'fixed',
+        anticipatePin: 1,
         invalidateOnRefresh: true,
         onRefresh: recalc,
         onUpdate: (self) => {

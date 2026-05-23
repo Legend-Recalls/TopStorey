@@ -8,7 +8,9 @@
      doesn't run flush to the viewport edges. */
   padding: 1.5rem clamp(1.5rem, 4vw, 4rem) 0.75rem;
   border-top: 2px solid var(--color-foreground);
-  background: transparent;
+  background: var(--color-background);
+  position: relative;
+  z-index: 1;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;

@@ -11,7 +11,12 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: clamp(0.5rem, 1vh, 1rem);
-  /* override .snap-section's vertical centering so the atlas can fill */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--color-background);
+  height: 100vh;
+  height: 100svh;
 }
 
 .markets-section-heading {
@@ -28,6 +33,84 @@
   font-weight: 600;
   max-width: 22ch;
   margin: 0;
+}
+
+.markets-scrollbar {
+  --markets-progress: 0;
+  --markets-segments: 4;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--markets-segments), minmax(0, 1fr));
+  gap: 0.25rem;
+  flex: 0 0 auto;
+  padding-block: 0.2rem 0.35rem;
+}
+
+.markets-scrollbar::before,
+.markets-scrollbar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background: color-mix(in srgb, var(--color-border-strong) 60%, transparent);
+}
+
+.markets-scrollbar::after {
+  right: auto;
+  width: calc(var(--markets-progress) * 100%);
+  background: var(--color-primary);
+  transition: width 80ms linear;
+}
+
+.markets-scrollbar-segment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 1.65rem;
+  padding-right: 0.6rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.markets-scrollbar-segment::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -0.35rem;
+  width: 1px;
+  height: 0.45rem;
+  background: var(--color-border-strong);
+}
+
+.markets-scrollbar-segment:last-child::after {
+  display: none;
+}
+
+.markets-scrollbar-segment.is-active {
+  color: var(--color-primary);
+}
+
+.markets-scrollbar-num {
+  opacity: 0.72;
+}
+
+.markets-scrollbar-label {
+  min-width: 0;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .markets-atlas {
@@ -161,7 +244,7 @@
   height: 100%;
   padding: clamp(1.25rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem);
   will-change: transform;
-  flex: 1 1 auto;
+  width: max-content;
 }
 
 /* ---- Individual chapter panel ---- */
@@ -406,10 +489,19 @@
 /* ---- Narrow viewports: vertical stack, no horizontal scroll ---- */
 
 @media (max-width: 899px) {
+  .markets-section {
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
   .markets-atlas {
     grid-template-columns: 1fr;
     gap: 1rem;
     min-height: auto;
+  }
+
+  .markets-scrollbar {
+    display: none;
   }
 
   .markets-rail {

@@ -73,10 +73,29 @@ const getMastheadOffset = (): number => {
  */
 const isInsideActivePin = (): boolean => {
   const triggers = ScrollTrigger.getAll()
+  const scrollY = window.scrollY
   for (const t of triggers) {
-    // `pin` is truthy only on pinning triggers. `isActive` flips on while the
-    // user is scrolling within [start, end].
-    if (t.pin && t.isActive) return true
+    if (!t.pin) continue
+    // Fast path: isActive flag
+    if (t.isActive) return true
+    // Fallback 1: check if scroll position is within the pin range
+    if (typeof t.start === 'number' && typeof t.end === 'number') {
+      if (scrollY >= t.start - 2 && scrollY <= t.end + 2) return true
+    }
+    // Fallback 2: check if the pinned element is currently position:fixed
+    // (GSAP sets this during pin with pinType: 'fixed')
+    const pinStyle = getComputedStyle(t.pin)
+    if (pinStyle.position === 'fixed') return true
+  }
+  return false
+}
+
+const isInsideNativeScrollRegion = (): boolean => {
+  const probeY = window.innerHeight * 0.5
+  const regions = document.querySelectorAll<HTMLElement>('[data-scroll-region="native"]')
+  for (const region of regions) {
+    const rect = region.getBoundingClientRect()
+    if (rect.top <= probeY && rect.bottom >= probeY) return true
   }
   return false
 }
@@ -153,6 +172,7 @@ export const useScrollSnap = (sectionIds: string[], options: Options = {}): void
     const commitSnap = (direction: 1 | -1) => {
       if (isAnimating) return
       if (performance.now() - lastSnapAt < cooldownMs) return
+      if (isInsideNativeScrollRegion()) return
       if (isInsideActivePin()) return // ⬅️ critical: don't fight the GSAP pin
 
       const sections = measure()
@@ -176,7 +196,16 @@ export const useScrollSnap = (sectionIds: string[], options: Options = {}): void
         e.preventDefault()
         return
       }
+      if (isInsideNativeScrollRegion()) return
       if (isInsideActivePin()) return // inside the horizontal scrub — native scroll drives GSAP
+
+      // Extra guard: if event target is inside a pinned section (position:fixed),
+      // step aside — catches cases where ScrollTrigger.isActive hasn't synced yet.
+      let el = e.target as HTMLElement | null
+      while (el) {
+        if (el.classList.contains('snap-section') && getComputedStyle(el).position === 'fixed') return
+        el = el.parentElement
+      }
 
       // Normalize: deltaMode 1 = lines, 2 = pages
       const delta =

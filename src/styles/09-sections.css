@@ -7,7 +7,9 @@
   border-top: 1px solid var(--color-border);
 }
 
-/* Full-viewport panel for GSAP snap — NO CSS scroll-snap-align */
+/* Full-viewport panel for GSAP snap — NO CSS scroll-snap-align.
+   overflow + background + z-index prevent content from adjacent sections
+   "leaking through" when GSAP pins a section with position:fixed. */
 .snap-section {
   min-height: 100vh;
   min-height: 100svh;
@@ -17,6 +19,10 @@
   padding-inline: clamp(1.5rem, 4vw, 4rem);
   padding-block: clamp(2rem, 4vh, 4rem);
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--color-background);
 }
 
 .section-heading {
