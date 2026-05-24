@@ -21,6 +21,10 @@
     min-height: auto;
   }
 
+  .hero-rotation-stage {
+    min-height: clamp(300px, calc(100vh - 280px), 440px);
+  }
+
   .lead-story-card {
     min-height: 300px;
   }
@@ -123,6 +127,10 @@
 
   .newsroom-hero {
     gap: 0.35rem;
+  }
+
+  .hero-rotation-stage {
+    min-height: auto;
   }
 
   .top-news-band {

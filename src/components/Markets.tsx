@@ -1,8 +1,4 @@
-import { useLayoutEffect, useRef, type CSSProperties } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { type CSSProperties } from 'react'
 
 interface MarketItem {
   label: string
@@ -27,109 +23,16 @@ function normalise(items: Array<string | MarketItem>): MarketItem[] {
 }
 
 export function Markets({ columns }: MarketsProps) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const trackRef = useRef<HTMLDivElement>(null)
-  const progressRef = useRef<HTMLDivElement>(null)
-  const activeIndexRef = useRef(0)
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current
-    const track = trackRef.current
-    const progressBar = progressRef.current
-    if (!section || !track || !progressBar) return
-
-    const updateActiveIndex = (idx: number, force = false) => {
-      if (!force && activeIndexRef.current === idx) return
-      activeIndexRef.current = idx
-
-      section.querySelectorAll('.markets-rail-progress li').forEach((item, i) => {
-        item.classList.toggle('is-active', i === idx)
-      })
-
-      track.querySelectorAll('.market-chapter').forEach((chapter, i) => {
-        chapter.classList.toggle('is-active', i === idx)
-      })
-
-      progressBar.querySelectorAll('.markets-scrollbar-segment').forEach((segment, i) => {
-        segment.classList.toggle('is-active', i === idx)
-      })
-    }
-
-    const clamp = (value: number, min: number, max: number) =>
-      Math.min(max, Math.max(min, value))
-
-    const getScrollDistance = () => {
-      const viewport = track.parentElement
-      const viewportWidth = viewport?.clientWidth ?? window.innerWidth
-      return Math.max(0, track.scrollWidth - viewportWidth)
-    }
-
-    const getScrollLength = () => {
-      const portion = clamp(window.innerHeight * 0.72, 420, 680)
-      return Math.max(portion * columns.length, getScrollDistance())
-    }
-
-    const mm = gsap.matchMedia()
-
-    mm.add('(min-width: 900px)', () => {
-      const tween = gsap.to(track, {
-        x: () => -getScrollDistance(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => `+=${getScrollLength()}`,
-          pin: true,
-          pinType: 'fixed',
-          scrub: 0.45,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const progress = clamp(self.progress, 0, 1)
-            progressBar.style.setProperty('--markets-progress', progress.toString())
-
-            const idx = Math.min(
-              columns.length - 1,
-              Math.floor(progress * columns.length),
-            )
-            updateActiveIndex(idx)
-          },
-          onRefresh: () => {
-            progressBar.style.setProperty('--markets-progress', '0')
-            updateActiveIndex(0, true)
-          },
-        },
-      })
-
-      return () => {
-        tween.scrollTrigger?.kill()
-        tween.kill()
-        gsap.set(track, { clearProps: 'transform' })
-        progressBar.style.setProperty('--markets-progress', '0')
-        updateActiveIndex(0, true)
-      }
-    })
-
-    mm.add('(max-width: 899px)', () => {
-      gsap.set(track, { clearProps: 'transform' })
-      progressBar.style.setProperty('--markets-progress', '0')
-      updateActiveIndex(0, true)
-    })
-
-    return () => mm.revert()
-  }, [columns])
-
   const normalised = columns.map((c) => ({ ...c, items: normalise(c.items) }))
 
   return (
-    <section ref={sectionRef} className="markets-section snap-section" id="markets">
+    <section className="markets-section snap-section" id="markets">
       <div className="markets-section-heading reveal-item">
         <p className="eyebrow">Markets</p>
         <h2>Coverage organised by asset class, cycle, and sector dynamics.</h2>
       </div>
 
       <div
-        ref={progressRef}
         className="markets-scrollbar"
         aria-hidden="true"
         style={
@@ -174,7 +77,7 @@ export function Markets({ columns }: MarketsProps) {
         </aside>
 
         <div className="markets-track-viewport">
-          <div ref={trackRef} className="markets-track">
+          <div className="markets-track">
             {normalised.map((col, i) => (
               <article
                 key={col.heading}

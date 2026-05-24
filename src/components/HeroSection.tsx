@@ -1,69 +1,65 @@
-interface LeadStoryData {
+interface HeroStory {
   title: string
   image: string
   category: string
   summary?: string
 }
 
-interface SideStoryData {
-  title: string
-  image: string
-  category: string
-}
-
 export interface HeroSectionProps {
-  leadStory: LeadStoryData
-  sideStories?: SideStoryData[]
+  stories: HeroStory[]
 }
 
-export function HeroSection({ leadStory, sideStories = [] }: HeroSectionProps) {
+const getInitialRole = (index: number) => {
+  if (index === 0) return 'is-lead'
+  if (index === 1) return 'is-side-1'
+  if (index === 2) return 'is-side-2'
+  return 'is-offstage'
+}
+
+export function HeroSection({ stories }: HeroSectionProps) {
   return (
     <div className="top-news-band">
-      <div className="hero-grid newsroom-hero">
-        <LeadStory {...leadStory} />
-        {sideStories.length > 0 && (
-          <div className="side-story-panel">
-            {sideStories.map((story, i) => (
-              <SideStory key={i} {...story} />
-            ))}
-          </div>
-        )}
+      <div className="hero-grid newsroom-hero hero-rotation-stage">
+        {stories.map((story, index) => (
+          <HeroStoryCard
+            key={`${story.category}-${story.title}`}
+            story={story}
+            index={index}
+            initialRole={getInitialRole(index)}
+          />
+        ))}
       </div>
     </div>
   )
 }
 
-export function LeadStory({ title, image, category, summary }: LeadStoryData) {
-  return (
-    <article className="lead-story-card">
-      <div
-        className="story-media-layer"
-        style={{ backgroundImage: `url(${image})` }}
-        aria-hidden="true"
-      />
-      <div className="top-story-copy">
-        <span className="top-story-kicker">{category}</span>
-        <h1>{title}</h1>
-        {summary && <p className="lead-summary">{summary}</p>}
-        <a href="#" className="read-full-link">
-          Read the full analysis →
-        </a>
-      </div>
-    </article>
-  )
+interface HeroStoryCardProps {
+  story: HeroStory
+  index: number
+  initialRole: string
 }
 
-export function SideStory({ title, image, category }: SideStoryData) {
+function HeroStoryCard({ story, index, initialRole }: HeroStoryCardProps) {
   return (
-    <article className="side-story-card">
+    <article
+      className={`hero-rotation-card ${initialRole} ${index === 0 ? 'lead-story-card' : 'side-story-card'}`}
+      data-hero-card
+      data-index={index}
+    >
       <div
         className="story-media-layer"
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(${story.image})` }}
         aria-hidden="true"
       />
       <div className="top-story-copy">
-        <span className="top-story-kicker">{category}</span>
-        <h2>{title}</h2>
+        <span className="top-story-kicker">{story.category}</span>
+        <h2 className="hero-rotation-title">{story.title}</h2>
+        {story.summary && <p className="lead-summary">{story.summary}</p>}
+        {story.summary && (
+          <a href="#" className="read-full-link">
+            Read the full analysis &rarr;
+          </a>
+        )}
       </div>
     </article>
   )

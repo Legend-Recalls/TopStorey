@@ -13,14 +13,9 @@ import {
 } from './components'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useSectionSnap } from './hooks/useSectionSnap'
+import { useScrollCoordinator } from './hooks/useScrollCoordinator'
 
 gsap.registerPlugin(ScrollTrigger)
-
-// Sections in vertical DOM order. The hook re-measures their real top on every
-// keystroke, so unequal section heights and viewport changes are handled
-// dynamically — no `index * window.innerHeight` math.
-const SNAP_SECTION_IDS = ['latest', 'featured', 'search', 'markets', 'studio', 'about']
 
 const featuredStories = [
   {
@@ -52,16 +47,15 @@ const featuredStories = [
   },
 ]
 
-const leadStory = {
-  category: 'Lead Story | Markets',
-  image:
-    'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80',
-  title: "India's next real estate cycle will be decided by discipline, not just demand.",
-  summary:
-    'Developers are launching into a more selective market. Capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
-}
-
-const sideLeadStories = [
+const latestStories = [
+  {
+    category: 'Lead Story | Markets',
+    image:
+      'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80',
+    title: "India's next real estate cycle will be decided by discipline, not just demand.",
+    summary:
+      'Developers are launching into a more selective market. Capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
+  },
   {
     category: 'Cities | Mumbai Metropolitan Region',
     image:
@@ -73,6 +67,30 @@ const sideLeadStories = [
     image:
       'https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1200&q=80',
     title: 'Office recovery stories keep improving, though asset-quality dispersion remains sharp.',
+  },
+  {
+    category: 'Policy & Regulation',
+    image:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80',
+    title: 'Approval velocity is becoming the hidden variable behind launch timing.',
+    summary:
+      'Regulatory clarity is not just reducing friction. It is reshaping which developers can convert land into credible supply.',
+  },
+  {
+    category: 'Residential | Bengaluru',
+    image:
+      'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80',
+    title: 'Peripheral growth corridors are separating infrastructure-led demand from speculation.',
+    summary:
+      'Absorption is becoming more selective as buyers distinguish delivery confidence from corridor storytelling.',
+  },
+  {
+    category: 'Capital Markets',
+    image:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
+    title: 'Investor patience is thinning for platforms that cannot prove execution discipline.',
+    summary:
+      'Capital is still available, but underwriting now rewards governance, delivery history, and cleaner land pipelines.',
   },
 ]
 
@@ -319,10 +337,7 @@ function ScrollProgress() {
 }
 
 export default function App() {
-  // Dynamic keyboard section navigation (ArrowUp/Down, PgUp/Dn, Home/End, Space)
-  // Re-measures every section on each keypress, so unequal section heights and
-  // viewport resizes can't desync the jump.
-  useSectionSnap(SNAP_SECTION_IDS)
+  useScrollCoordinator()
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -357,7 +372,7 @@ export default function App() {
 
         <header className="hero snap-section" id="latest">
           <NewsTicker items={tickerItems} />
-          <HeroSection leadStory={leadStory} sideStories={sideLeadStories} />
+          <HeroSection stories={latestStories} />
         </header>
 
         <main className="content-flow">
