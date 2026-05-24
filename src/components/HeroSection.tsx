@@ -1,8 +1,12 @@
+import { Link } from 'react-router-dom'
+import { storyPath } from '../data/storyCatalog'
+
 interface HeroStory {
   title: string
   image: string
   category: string
   summary?: string
+  slug?: string
 }
 
 export interface HeroSectionProps {
@@ -40,11 +44,15 @@ interface HeroStoryCardProps {
 }
 
 function HeroStoryCard({ story, index, initialRole }: HeroStoryCardProps) {
+  const href = story.slug ? storyPath(story.slug) : '#'
+
   return (
-    <article
+    <Link
+      to={href}
       className={`hero-rotation-card ${initialRole} ${index === 0 ? 'lead-story-card' : 'side-story-card'}`}
       data-hero-card
       data-index={index}
+      aria-label={`Read ${story.title}`}
     >
       <div
         className="story-media-layer"
@@ -56,11 +64,11 @@ function HeroStoryCard({ story, index, initialRole }: HeroStoryCardProps) {
         <h2 className="hero-rotation-title">{story.title}</h2>
         {story.summary && <p className="lead-summary">{story.summary}</p>}
         {story.summary && (
-          <a href="#" className="read-full-link">
+          <span className="read-full-link">
             Read the full analysis &rarr;
-          </a>
+          </span>
         )}
       </div>
-    </article>
+    </Link>
   )
 }

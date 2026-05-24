@@ -74,8 +74,17 @@ export function Masthead({ navItems = [] }: MastheadProps) {
     setIsOpen(false)
     setOpenNav(null)
     setTimeout(() => {
+      if (!href.startsWith('#')) {
+        window.location.href = href
+        return
+      }
+
       const el = document.querySelector(href)
-      if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' })
+      if (el) {
+        el.scrollIntoView({ behavior: 'instant', block: 'start' })
+      } else {
+        window.location.href = `/${href}`
+      }
     }, 100)
   }
 
@@ -105,7 +114,14 @@ export function Masthead({ navItems = [] }: MastheadProps) {
           </div>
 
           {/* Centre — logo */}
-          <a href="#latest" className="masthead-logo" onClick={() => setIsOpen(false)}>
+          <a
+            href="/#latest"
+            className="masthead-logo"
+            onClick={(e) => {
+              e.preventDefault()
+              handleNavClick('#latest')
+            }}
+          >
             <span className="masthead-logo-text">Top Storey</span>
           </a>
 

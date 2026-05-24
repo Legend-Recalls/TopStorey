@@ -43,6 +43,16 @@
   background-color: var(--color-surface);
 }
 
+.story-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.story-card-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
 .story-card:last-child {
   border-bottom: none;
 }

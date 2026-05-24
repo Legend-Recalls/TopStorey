@@ -1,4 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import {
   Masthead,
   NewsTicker,
@@ -14,6 +15,7 @@ import {
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScrollCoordinator } from './hooks/useScrollCoordinator'
+import { StoryPage } from './pages/StoryPage'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,6 +25,7 @@ const featuredStories = [
     image:
       'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
     title: 'Rate easing is changing buyer timing, but not in the way developers expected.',
+    slug: 'rate-easing-changing-buyer-timing',
     meta: '85K views · 4 min read',
     summary:
       'A closer read on financing sentiment, launch discipline, and how policy noise is feeding selective demand.',
@@ -32,6 +35,7 @@ const featuredStories = [
     image:
       'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80',
     title: 'Peripheral growth is no longer a fringe story. Infrastructure sequencing now decides pricing power.',
+    slug: 'peripheral-growth-infrastructure-sequencing-pricing-power',
     meta: '41K views · 5 min read',
     summary:
       'Where absorption is real, where speculation is outrunning fundamentals, and which micro-markets are diverging.',
@@ -41,6 +45,7 @@ const featuredStories = [
     image:
       'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
     title: 'Office demand is stabilising, yet leasing headlines still hide asset-quality dispersion.',
+    slug: 'office-demand-stabilising-leasing-headlines-hide-dispersion',
     meta: '37K views · 4 min read',
     summary:
       'Top Storey tracks what headline leasing numbers miss: tenant mix, location resilience, and replacement risk.',
@@ -53,6 +58,7 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80',
     title: "India's next real estate cycle will be decided by discipline, not just demand.",
+    slug: 'indias-next-real-estate-cycle-discipline-demand',
     summary:
       'Developers are launching into a more selective market. Capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
   },
@@ -61,18 +67,21 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80',
     title: 'Inventory is rising, but genuine premium scarcity is still localised.',
+    slug: 'inventory-rising-premium-scarcity-localised',
   },
   {
     category: 'Commercial',
     image:
       'https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1200&q=80',
     title: 'Office recovery stories keep improving, though asset-quality dispersion remains sharp.',
+    slug: 'office-recovery-asset-quality-dispersion',
   },
   {
     category: 'Policy & Regulation',
     image:
       'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80',
     title: 'Approval velocity is becoming the hidden variable behind launch timing.',
+    slug: 'approval-velocity-hidden-variable-launch-timing',
     summary:
       'Regulatory clarity is not just reducing friction. It is reshaping which developers can convert land into credible supply.',
   },
@@ -81,6 +90,7 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80',
     title: 'Peripheral growth corridors are separating infrastructure-led demand from speculation.',
+    slug: 'peripheral-growth-corridors-infrastructure-led-demand',
     summary:
       'Absorption is becoming more selective as buyers distinguish delivery confidence from corridor storytelling.',
   },
@@ -89,6 +99,7 @@ const latestStories = [
     image:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
     title: 'Investor patience is thinning for platforms that cannot prove execution discipline.',
+    slug: 'investor-patience-thinning-execution-discipline',
     summary:
       'Capital is still available, but underwriting now rewards governance, delivery history, and cleaner land pipelines.',
   },
@@ -197,16 +208,19 @@ const mostRead = [
   {
     label: 'Most clicked',
     title: 'Why premium launches are holding velocity while mass housing demand fragments.',
+    slug: 'premium-launches-holding-velocity-mass-housing-fragments',
     meta: '62K views · 4 min read',
   },
   {
     label: 'Most shared',
     title: 'What the latest land deals actually reveal about developer risk appetite.',
+    slug: 'latest-land-deals-developer-risk-appetite',
     meta: '49K views · 6 min read',
   },
   {
     label: 'Most discussed',
     title: 'Is branded real estate research becoming marketing theatre or public utility?',
+    slug: 'branded-real-estate-research-marketing-theatre-public-utility',
     meta: '44K views · 5 min read',
   },
 ]
@@ -336,7 +350,7 @@ function ScrollProgress() {
   return <div className="scroll-progress" style={{ width: `${width}%` }} />
 }
 
-export default function App() {
+function HomePage() {
   useScrollCoordinator()
 
   useLayoutEffect(() => {
@@ -407,5 +421,18 @@ export default function App() {
         <Footer sections={footerSections} />
       </div>
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/stories/:slug"
+        element={<StoryPage navItems={navItems} footerSections={footerSections} />}
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }

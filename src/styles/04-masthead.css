@@ -597,6 +597,12 @@
 /* ---- Responsive ---- */
 
 @media (max-width: 600px) {
+  .masthead-hamburger {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .masthead-action-link {
     display: none;
   }
@@ -611,7 +617,12 @@
   }
 
   .masthead-nav {
-    gap: 0;
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
   }
 
   .masthead-nav-link {
