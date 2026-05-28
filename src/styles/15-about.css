@@ -12,21 +12,279 @@
      and reserve room for the fixed 2.75rem masthead bar so neither
      the About eyebrow nor the Contact heading is overlapped. */
   justify-content: flex-start;
-  padding-top: calc(clamp(2rem, 4vh, 4rem) + 2.75rem);
+  padding-top: calc(clamp(1rem, 2vh, 1.6rem) + 2.75rem);
+  padding-bottom: clamp(0.9rem, 2vh, 1.5rem);
   border-top: 1px solid var(--color-border);
 }
 
 .approach-panel,
 .contact-card {
-  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-border) 86%, var(--color-primary));
   background: var(--color-surface-strong);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  padding: clamp(1.2rem, 2vw, 1.65rem);
+  box-shadow: 0 18px 50px rgba(26, 24, 22, 0.06);
+}
+
+.approach-panel {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: clamp(1rem, 2vh, 1.5rem);
+}
+
+.approach-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(139, 46, 36, 0.08), transparent 32%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(25% - 1px),
+      color-mix(in srgb, var(--color-border) 44%, transparent) calc(25% - 1px),
+      color-mix(in srgb, var(--color-border) 44%, transparent) 25%
+    );
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.about-lead,
+.timeline,
+.contact-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.62fr);
+  gap: clamp(1rem, 2.4vw, 1.75rem);
+  align-items: stretch;
+  padding-bottom: clamp(0.9rem, 1.8vh, 1.4rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-lead .section-heading {
+  align-content: end;
+  margin: 0;
+}
+
+.founder-card {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(112px, 0.72fr) minmax(0, 1fr);
+  min-height: 176px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 22%, var(--color-border));
+  background:
+    linear-gradient(135deg, rgba(139, 46, 36, 0.12), transparent 48%),
+    var(--color-background);
+}
+
+.founder-portrait {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent),
+    var(--color-surface);
+}
+
+.founder-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: contrast(1.04) saturate(0.92);
+}
+
+.founder-image-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.founder-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  min-width: 0;
+  padding: 0.75rem;
+}
+
+.founder-kicker {
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.founder-caption strong,
+.founder-caption > span:not(.founder-kicker) {
+  font-family: var(--font-serif);
+  color: var(--color-foreground);
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.founder-caption p {
+  margin: 0.5rem 0 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-prose);
+  font-size: 0.78rem;
+  line-height: 1.38;
+}
+
+.timeline {
+  border-top: 0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 3.15rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: clamp(0.62rem, 1.25vh, 0.9rem) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.timeline-item:last-child {
+  border-bottom: 0;
+}
+
+.timeline-item > span {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 7%, var(--color-background));
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.timeline-item h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.1;
+}
+
+.timeline-item p {
+  max-width: 72ch;
+  font-family: var(--font-prose);
+  font-size: 0.88rem;
+  line-height: 1.42;
+}
+
+.contact-card {
+  color: var(--color-background);
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--color-primary) 28%, transparent), transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-foreground) 96%, #000), var(--color-foreground));
+  border-color: color-mix(in srgb, var(--color-primary) 48%, var(--color-foreground));
+}
+
+.contact-card::after {
+  content: "TOP STOREY";
+  position: absolute;
+  right: -0.5rem;
+  bottom: 0.45rem;
+  color: color-mix(in srgb, var(--color-background) 6%, transparent);
+  font-family: var(--font-serif);
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.8;
+  pointer-events: none;
+}
+
+.contact-card-rule {
+  width: clamp(4rem, 8vw, 6.5rem);
+  height: 0.2rem;
+  margin-bottom: clamp(0.9rem, 2vh, 1.4rem);
+  background: var(--color-primary);
 }
 
 .contact-card h2 {
   font-family: var(--font-serif);
   line-height: 1.05;
+  color: var(--color-background);
+}
+
+.contact-card .eyebrow {
+  color: color-mix(in srgb, var(--color-background) 86%, var(--color-primary));
+}
+
+.contact-card .lead {
+  color: color-mix(in srgb, var(--color-background) 78%, transparent);
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+}
+
+.contact-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: clamp(0.95rem, 2vh, 1.4rem) 0;
+  border: 1px solid color-mix(in srgb, var(--color-background) 16%, transparent);
+}
+
+.contact-proof-strip span {
+  min-width: 0;
+  padding: 0.62rem 0.55rem;
+  background: color-mix(in srgb, var(--color-background) 7%, transparent);
+  color: color-mix(in srgb, var(--color-background) 82%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.contact-card .editorial-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.contact-card .editorial-list p {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0;
+  padding: 0.62rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-background) 12%, transparent);
+  color: color-mix(in srgb, var(--color-background) 86%, transparent);
+  font-family: var(--font-prose);
+  font-size: 1rem;
+}
+
+.contact-card .editorial-list p::before {
+  content: none;
+}
+
+.contact-card .editorial-list span {
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
 }
 
 .service-card {
@@ -44,4 +302,15 @@
 
 .service-list {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1180px) {
+  .about-lead,
+  .founder-card {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-portrait {
+    min-height: clamp(180px, 28vh, 260px);
+  }
 }

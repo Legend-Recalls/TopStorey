@@ -88,6 +88,12 @@ export function Masthead({ navItems = [] }: MastheadProps) {
     }, 100)
   }
 
+  const handleSearchClick = () => {
+    setOpenNav(null)
+    setIsOpen(true)
+    setTimeout(() => searchInputRef.current?.focus(), 0)
+  }
+
   return (
     <>
       {/* ---- Unified dark header block ---- */}
@@ -144,7 +150,9 @@ export function Masthead({ navItems = [] }: MastheadProps) {
             <button
               type="button"
               className="masthead-search-btn"
+              onClick={handleSearchClick}
               aria-label="Search"
+              aria-expanded={isOpen}
             >
               <Search size={16} strokeWidth={1.8} />
             </button>
@@ -158,6 +166,7 @@ export function Masthead({ navItems = [] }: MastheadProps) {
               const children = item.children ?? []
               const hasDropdown = children.length > 0
               const isActive = openNav === item.label
+              const isMegaMenu = item.label === 'Markets'
 
               if (!hasDropdown) {
                 return (
@@ -199,7 +208,7 @@ export function Masthead({ navItems = [] }: MastheadProps) {
                   </button>
 
                   <div
-                    className={`masthead-dropdown${getNavChildCount(children) > 8 ? ' masthead-dropdown-wide' : ''}`}
+                    className={`masthead-dropdown${getNavChildCount(children) > 8 || isMegaMenu ? ' masthead-dropdown-wide' : ''}${isMegaMenu ? ' masthead-dropdown-mega' : ''}`}
                     role="menu"
                     aria-label={`${item.label} subcategories`}
                   >
@@ -221,25 +230,30 @@ export function Masthead({ navItems = [] }: MastheadProps) {
                           {child}
                         </a>
                       ) : (
-                        <div className="masthead-dropdown-section" key={`${item.label}-${child.label}`}>
+                        <div
+                          className={`masthead-dropdown-section${child.items.length === 0 ? ' masthead-dropdown-section-empty' : ''}`}
+                          key={`${item.label}-${child.label}`}
+                        >
                           <span className="masthead-dropdown-section-title">{child.label}</span>
-                          <div className="masthead-dropdown-section-links">
-                            {child.items.map((sectionItem) => (
-                              <a
-                                key={`${item.label}-${child.label}-${sectionItem}`}
-                                href={item.href}
-                                className="masthead-dropdown-link"
-                                role="menuitem"
-                                onClick={(e) => {
-                                  e.preventDefault()
-                                  setOpenNav(null)
-                                  handleNavClick(item.href)
-                                }}
-                              >
-                                {sectionItem}
-                              </a>
-                            ))}
-                          </div>
+                          {child.items.length > 0 && (
+                            <div className="masthead-dropdown-section-links">
+                              {child.items.map((sectionItem) => (
+                                <a
+                                  key={`${item.label}-${child.label}-${sectionItem}`}
+                                  href={item.href}
+                                  className="masthead-dropdown-link"
+                                  role="menuitem"
+                                  onClick={(e) => {
+                                    e.preventDefault()
+                                    setOpenNav(null)
+                                    handleNavClick(item.href)
+                                  }}
+                                >
+                                  {sectionItem}
+                                </a>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )
                     )}
@@ -323,22 +337,24 @@ export function Masthead({ navItems = [] }: MastheadProps) {
                           ) : (
                             <div className="menu-subnav-group" key={`${item.label}-${child.label}`}>
                               <span className="menu-subnav-title">{child.label}</span>
-                              <div className="menu-subnav-links">
-                                {child.items.map((sectionItem) => (
-                                  <a
-                                    key={`${item.label}-${child.label}-${sectionItem}`}
-                                    href={item.href}
-                                    className="menu-subnav-link"
-                                    onClick={(e) => {
-                                      e.preventDefault()
-                                      handleNavClick(item.href)
-                                    }}
-                                    tabIndex={isOpen ? 0 : -1}
-                                  >
-                                    {sectionItem}
-                                  </a>
-                                ))}
-                              </div>
+                              {child.items.length > 0 && (
+                                <div className="menu-subnav-links">
+                                  {child.items.map((sectionItem) => (
+                                    <a
+                                      key={`${item.label}-${child.label}-${sectionItem}`}
+                                      href={item.href}
+                                      className="menu-subnav-link"
+                                      onClick={(e) => {
+                                        e.preventDefault()
+                                        handleNavClick(item.href)
+                                      }}
+                                      tabIndex={isOpen ? 0 : -1}
+                                    >
+                                      {sectionItem}
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           )
                         )}

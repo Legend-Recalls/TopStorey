@@ -299,11 +299,12 @@
   padding: clamp(1rem, 2vh, 1.5rem);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
+  color: var(--color-foreground);
   justify-content: flex-start;
   gap: 0.5rem;
-  min-height: clamp(180px, 26vh, 280px);
-  max-height: 32vh;
-  overflow: hidden;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
 }
 
 .event-meta-row {
@@ -317,19 +318,21 @@
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   line-height: 1.25;
   margin: 0.5rem 0;
+  color: var(--color-foreground);
 }
 
 .event-hero p {
   font-size: 0.85rem;
   color: var(--color-text-secondary);
   line-height: 1.4;
+  margin: 0;
 }
 
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin: clamp(0.75rem, 1.5vh, 1rem) 0 0;
 }
 
 .countdown-card {

@@ -16,6 +16,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScrollCoordinator } from './hooks/useScrollCoordinator'
 import { StoryPage } from './pages/StoryPage'
+import ceoFounderImage from './static/images.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -263,11 +264,23 @@ const navItems = [
         items: ['Retail', 'Malls / High Streets', 'REITs'],
       },
       {
-        label: 'Intelligence',
-        items: ['Mixed-use Development', 'Land Development', 'Policy & Regulation', 'Trends & Cycles'],
+        label: 'Mixed-use Development',
+        items: [],
       },
       {
-        label: 'Alternative Living',
+        label: 'Land Development',
+        items: [],
+      },
+      {
+        label: 'Policy & Regulation',
+        items: [],
+      },
+      {
+        label: 'Trends & Cycles',
+        items: [],
+      },
+      {
+        label: 'Other Asset Classes',
         items: ['Co-living', 'Co-working', 'Student Housing'],
       },
     ],
@@ -326,6 +339,13 @@ const aboutLinks = [
     description: 'A clearer explanation of what Top Storey stands for and how the platform operates.',
   },
 ]
+
+const founderProfile = {
+  image: ceoFounderImage,
+  role: 'Founder & CEO',
+  summary:
+    'The principal voice behind Top Storey, shaping its editorial discipline, market lens, and accountability-first approach.',
+}
 
 const footerSections = {
   sections: ['Latest News', 'Featured Reports', 'Market Analysis', 'City Data', 'Podcasts'],
@@ -409,7 +429,7 @@ function HomePage() {
           <StudioSection conversations={conversations} events={events} />
 
           <section className="section snap-section approach-section" id="about">
-            <About links={aboutLinks} />
+            <About links={aboutLinks} founder={founderProfile} />
             <ContactCard
               title="Independent journalism with accountability built into the frame."
               description="In an industry often shaped by promotion, Top Storey is positioned as an analytical newsroom. The product should feel like a publication first."

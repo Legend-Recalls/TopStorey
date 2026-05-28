@@ -1,0 +1,537 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - button "Open menu" [ref=e7] [cursor=pointer]:
+        - img [ref=e8]
+      - link "Top Storey" [ref=e9] [cursor=pointer]:
+        - /url: /#latest
+      - generic [ref=e10]:
+        - button "Switch to dark mode" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+        - link "Subscribe" [ref=e14] [cursor=pointer]:
+          - /url: "#"
+        - button "Search" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+    - navigation "Primary navigation":
+      - link "Latest":
+        - /url: "#latest"
+      - link "Featured":
+        - /url: "#featured"
+      - generic:
+        - button "Cities"
+      - generic:
+        - button "Markets"
+      - generic:
+        - button "Conversations"
+      - generic:
+        - button "Events"
+      - generic:
+        - button "About"
+  - banner [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]: Live
+      - generic [ref=e24]:
+        - generic [ref=e25]: "Policy watch: approval velocity is reshaping launch timing across major urban markets. ·"
+        - generic [ref=e26]: "Capital flows: investors are getting more selective on execution credibility and land discipline. ·"
+        - generic [ref=e27]: "Cities: infrastructure sequencing is now a bigger pricing variable than headline supply. ·"
+        - generic [ref=e28]: "Commercial: leasing recovery remains uneven across asset quality and micro-market depth. ·"
+        - generic [ref=e29]: "Research: Top Storey tracks what promotional narratives leave out of the market cycle. ·"
+        - generic [ref=e30]: "Policy watch: approval velocity is reshaping launch timing across major urban markets. ·"
+        - generic [ref=e31]: "Capital flows: investors are getting more selective on execution credibility and land discipline. ·"
+        - generic [ref=e32]: "Cities: infrastructure sequencing is now a bigger pricing variable than headline supply. ·"
+        - generic [ref=e33]: "Commercial: leasing recovery remains uneven across asset quality and micro-market depth. ·"
+        - generic [ref=e34]: "Research: Top Storey tracks what promotional narratives leave out of the market cycle. ·"
+    - generic [ref=e36]:
+      - link "Read India's next real estate cycle will be decided by discipline, not just demand." [ref=e37] [cursor=pointer]:
+        - /url: /stories/indias-next-real-estate-cycle-discipline-demand
+        - generic [ref=e39]:
+          - generic [ref=e40]: Lead Story | Markets
+          - heading "India's next real estate cycle will be decided by discipline, not just demand." [level=2] [ref=e41]
+          - paragraph [ref=e42]: Developers are launching into a more selective market. Capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.
+          - generic [ref=e43]: Read the full analysis →
+      - link "Read Inventory is rising, but genuine premium scarcity is still localised." [ref=e44] [cursor=pointer]:
+        - /url: /stories/inventory-rising-premium-scarcity-localised
+        - generic [ref=e46]:
+          - generic [ref=e47]: Cities | Mumbai Metropolitan Region
+          - heading "Inventory is rising, but genuine premium scarcity is still localised." [level=2] [ref=e48]
+      - link "Read Office recovery stories keep improving, though asset-quality dispersion remains sharp." [ref=e49] [cursor=pointer]:
+        - /url: /stories/office-recovery-asset-quality-dispersion
+        - generic [ref=e51]:
+          - generic [ref=e52]: Commercial
+          - heading "Office recovery stories keep improving, though asset-quality dispersion remains sharp." [level=2] [ref=e53]
+      - link "Read Approval velocity is becoming the hidden variable behind launch timing.":
+        - /url: /stories/approval-velocity-hidden-variable-launch-timing
+        - generic:
+          - generic: Policy & Regulation
+          - heading "Approval velocity is becoming the hidden variable behind launch timing." [level=2]
+      - link "Read Peripheral growth corridors are separating infrastructure-led demand from speculation.":
+        - /url: /stories/peripheral-growth-corridors-infrastructure-led-demand
+        - generic:
+          - generic: Residential | Bengaluru
+          - heading "Peripheral growth corridors are separating infrastructure-led demand from speculation." [level=2]
+      - link "Read Investor patience is thinning for platforms that cannot prove execution discipline.":
+        - /url: /stories/investor-patience-thinning-execution-discipline
+        - generic:
+          - generic: Capital Markets
+          - heading "Investor patience is thinning for platforms that cannot prove execution discipline." [level=2]
+  - main [ref=e54]:
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: Featured
+          - heading "The most important stories and market updates." [level=2] [ref=e61]
+        - generic [ref=e62]:
+          - link "Read Rate easing is changing buyer timing, but not in the way developers expected." [ref=e63] [cursor=pointer]:
+            - /url: /stories/rate-easing-changing-buyer-timing
+            - generic [ref=e64]:
+              - heading "Rate easing is changing buyer timing, but not in the way developers expected." [level=3] [ref=e65]
+              - generic [ref=e66]: 85K views · 4 min read
+          - link "Read Peripheral growth is no longer a fringe story. Infrastructure sequencing now decides pricing power." [ref=e67] [cursor=pointer]:
+            - /url: /stories/peripheral-growth-infrastructure-sequencing-pricing-power
+            - generic [ref=e68]:
+              - heading "Peripheral growth is no longer a fringe story. Infrastructure sequencing now decides pricing power." [level=3] [ref=e69]
+              - generic [ref=e70]: 41K views · 5 min read
+          - link "Read Office demand is stabilising, yet leasing headlines still hide asset-quality dispersion." [ref=e71] [cursor=pointer]:
+            - /url: /stories/office-demand-stabilising-leasing-headlines-hide-dispersion
+            - generic [ref=e72]:
+              - heading "Office demand is stabilising, yet leasing headlines still hide asset-quality dispersion." [level=3] [ref=e73]
+              - generic [ref=e74]: 37K views · 4 min read
+      - generic [ref=e75]:
+        - generic [ref=e76]: Trending Now
+        - generic [ref=e78]:
+          - link "Read Why premium launches are holding velocity while mass housing demand fragments." [ref=e79] [cursor=pointer]:
+            - /url: /stories/premium-launches-holding-velocity-mass-housing-fragments
+            - generic [ref=e80]:
+              - generic [ref=e81]: "01"
+              - generic [ref=e82]: Most clicked
+            - paragraph [ref=e83]: Why premium launches are holding velocity while mass housing demand fragments.
+            - generic [ref=e84]: 62K views · 4 min read
+          - link "Read What the latest land deals actually reveal about developer risk appetite." [ref=e85] [cursor=pointer]:
+            - /url: /stories/latest-land-deals-developer-risk-appetite
+            - generic [ref=e86]:
+              - generic [ref=e87]: "02"
+              - generic [ref=e88]: Most shared
+            - paragraph [ref=e89]: What the latest land deals actually reveal about developer risk appetite.
+            - generic [ref=e90]: 49K views · 6 min read
+          - link "Read Is branded real estate research becoming marketing theatre or public utility?" [ref=e91] [cursor=pointer]:
+            - /url: /stories/branded-real-estate-research-marketing-theatre-public-utility
+            - generic [ref=e92]:
+              - generic [ref=e93]: "03"
+              - generic [ref=e94]: Most discussed
+            - paragraph [ref=e95]: Is branded real estate research becoming marketing theatre or public utility?
+            - generic [ref=e96]: 44K views · 5 min read
+          - link "Read Why premium launches are holding velocity while mass housing demand fragments." [ref=e97] [cursor=pointer]:
+            - /url: /stories/premium-launches-holding-velocity-mass-housing-fragments
+            - generic [ref=e98]:
+              - generic [ref=e99]: "04"
+              - generic [ref=e100]: Most clicked
+            - paragraph [ref=e101]: Why premium launches are holding velocity while mass housing demand fragments.
+            - generic [ref=e102]: 62K views · 4 min read
+          - link "Read What the latest land deals actually reveal about developer risk appetite." [ref=e103] [cursor=pointer]:
+            - /url: /stories/latest-land-deals-developer-risk-appetite
+            - generic [ref=e104]:
+              - generic [ref=e105]: "05"
+              - generic [ref=e106]: Most shared
+            - paragraph [ref=e107]: What the latest land deals actually reveal about developer risk appetite.
+            - generic [ref=e108]: 49K views · 6 min read
+          - link "Read Is branded real estate research becoming marketing theatre or public utility?" [ref=e109] [cursor=pointer]:
+            - /url: /stories/branded-real-estate-research-marketing-theatre-public-utility
+            - generic [ref=e110]:
+              - generic [ref=e111]: "06"
+              - generic [ref=e112]: Most discussed
+            - paragraph [ref=e113]: Is branded real estate research becoming marketing theatre or public utility?
+            - generic [ref=e114]: 44K views · 5 min read
+    - generic [ref=e115]:
+      - generic [ref=e116]:
+        - paragraph [ref=e117]: Search Properties
+        - heading "Find your next investment across India's top real estate markets." [level=2] [ref=e118]
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - button "Buy" [ref=e122] [cursor=pointer]
+          - button "Rent" [ref=e123] [cursor=pointer]
+          - button "New launches" [ref=e124] [cursor=pointer]
+        - generic [ref=e125]:
+          - combobox "Select City" [ref=e127] [cursor=pointer]:
+            - option "All Cities" [selected]
+            - option "Delhi/NCR"
+            - option "Mumbai Metropolitan Region"
+            - option "Bengaluru"
+            - option "Hyderabad"
+            - option "Pune"
+            - option "Chennai"
+            - option "Kolkata"
+            - option "Emerging Markets"
+          - textbox "Search by locality, project, builder, or landmark..." [ref=e129]
+          - button "Search" [ref=e130] [cursor=pointer]
+        - generic [ref=e131]:
+          - generic [ref=e132]:
+            - generic [ref=e133]: Property Type
+            - generic [ref=e134]:
+              - button "Residential" [ref=e135] [cursor=pointer]
+              - button "Commercial" [ref=e136] [cursor=pointer]
+              - button "Plots/Land" [ref=e137] [cursor=pointer]
+              - button "Co-living" [ref=e138] [cursor=pointer]
+              - button "Co-working" [ref=e139] [cursor=pointer]
+          - generic [ref=e140]:
+            - generic [ref=e141]: Budget
+            - generic [ref=e142]:
+              - button "Under ₹50L" [ref=e143] [cursor=pointer]
+              - button "₹50L – ₹1Cr" [ref=e144] [cursor=pointer]
+              - button "₹1Cr – ₹3Cr" [ref=e145] [cursor=pointer]
+              - button "₹3Cr – ₹5Cr" [ref=e146] [cursor=pointer]
+              - button "₹5Cr+" [ref=e147] [cursor=pointer]
+          - generic [ref=e148]:
+            - generic [ref=e149]: BHK
+            - generic [ref=e150]:
+              - button "1 BHK" [ref=e151] [cursor=pointer]
+              - button "2 BHK" [ref=e152] [cursor=pointer]
+              - button "3 BHK" [ref=e153] [cursor=pointer]
+              - button "4 BHK" [ref=e154] [cursor=pointer]
+              - button "4+ BHK" [ref=e155] [cursor=pointer]
+        - generic [ref=e156]:
+          - generic [ref=e157]: "Popular:"
+          - link "Delhi/NCR" [ref=e158] [cursor=pointer]:
+            - /url: "#delhi-ncr"
+          - link "Mumbai Metropolitan Region" [ref=e159] [cursor=pointer]:
+            - /url: "#mumbai metropolitan region"
+          - link "Bengaluru" [ref=e160] [cursor=pointer]:
+            - /url: "#bengaluru"
+          - link "Hyderabad" [ref=e161] [cursor=pointer]:
+            - /url: "#hyderabad"
+          - link "Pune" [ref=e162] [cursor=pointer]:
+            - /url: "#pune"
+          - link "Chennai" [ref=e163] [cursor=pointer]:
+            - /url: "#chennai"
+    - generic [ref=e164]:
+      - generic [ref=e165]:
+        - paragraph [ref=e166]: Markets
+        - heading "Coverage organised by asset class, cycle, and sector dynamics." [level=2] [ref=e167]
+      - generic [ref=e168]:
+        - complementary [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]: Coverage Atlas
+            - paragraph [ref=e172]: Four asset classes. One taxonomy. Scroll to explore how we organise the market - by where capital flows, where households live, and where the cycle is turning.
+          - list [ref=e173]:
+            - listitem [ref=e174]:
+              - generic [ref=e175]: "01"
+              - generic [ref=e176]: Residential
+            - listitem [ref=e177]:
+              - generic [ref=e178]: "02"
+              - generic [ref=e179]: Commercial
+            - listitem [ref=e180]:
+              - generic [ref=e181]: "03"
+              - generic [ref=e182]: Analytical Coverage
+            - listitem [ref=e183]:
+              - generic [ref=e184]: "04"
+              - generic [ref=e185]: Other Asset Classes
+          - paragraph [ref=e186]: "-> Scroll to advance chapters"
+        - generic [ref=e188]:
+          - article [ref=e189]:
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - generic [ref=e193]: "01"
+                - generic [ref=e194]:
+                  - paragraph [ref=e195]: Asset Class 01
+                  - heading "Residential" [level=3] [ref=e196]
+              - paragraph [ref=e197]: Where households, capital, and policy converge — the deepest, most cyclical pool we cover.
+              - list [ref=e198]:
+                - listitem [ref=e199]:
+                  - link "Affordable Mass-market, sub-₹50L" [ref=e200] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e201]: Affordable
+                    - generic [ref=e202]: Mass-market, sub-₹50L
+                    - generic [ref=e203]: "->"
+                - listitem [ref=e204]:
+                  - link "Luxury / Premium ₹5Cr+ stock" [ref=e205] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e206]: Luxury / Premium
+                    - generic [ref=e207]: ₹5Cr+ stock
+                    - generic [ref=e208]: "->"
+                - listitem [ref=e209]:
+                  - link "Second Homes Leisure & hill" [ref=e210] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e211]: Second Homes
+                    - generic [ref=e212]: Leisure & hill
+                    - generic [ref=e213]: "->"
+                - listitem [ref=e214]:
+                  - link "Senior Living Care-integrated" [ref=e215] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e216]: Senior Living
+                    - generic [ref=e217]: Care-integrated
+                    - generic [ref=e218]: "->"
+                - listitem [ref=e219]:
+                  - link "Farmhouses Peri-urban land plays" [ref=e220] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e221]: Farmhouses
+                    - generic [ref=e222]: Peri-urban land plays
+                    - generic [ref=e223]: "->"
+              - generic [ref=e224]:
+                - generic [ref=e225]:
+                  - generic [ref=e226]: 47%
+                  - generic [ref=e227]: of total coverage
+                - link "View coverage" [ref=e228] [cursor=pointer]:
+                  - /url: "#markets"
+                  - text: View coverage
+                  - generic [ref=e229]: "->"
+          - article [ref=e230]:
+            - generic [ref=e232]:
+              - generic [ref=e233]:
+                - generic [ref=e234]: "02"
+                - generic [ref=e235]:
+                  - paragraph [ref=e236]: Asset Class 02
+                  - heading "Commercial" [level=3] [ref=e237]
+              - paragraph [ref=e238]: Yield, scale, institutionalisation — the segment driving REIT-listed liquidity.
+              - list [ref=e239]:
+                - listitem [ref=e240]:
+                  - link "Retail High-street & strata" [ref=e241] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e242]: Retail
+                    - generic [ref=e243]: High-street & strata
+                    - generic [ref=e244]: "->"
+                - listitem [ref=e245]:
+                  - link "Malls / High Streets Anchored centres" [ref=e246] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e247]: Malls / High Streets
+                    - generic [ref=e248]: Anchored centres
+                    - generic [ref=e249]: "->"
+                - listitem [ref=e250]:
+                  - link "REITs Listed real estate" [ref=e251] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e252]: REITs
+                    - generic [ref=e253]: Listed real estate
+                    - generic [ref=e254]: "->"
+              - generic [ref=e255]:
+                - generic [ref=e256]:
+                  - generic [ref=e257]: ₹1.4T
+                  - generic [ref=e258]: tracked AUM
+                - link "View coverage" [ref=e259] [cursor=pointer]:
+                  - /url: "#markets"
+                  - text: View coverage
+                  - generic [ref=e260]: "->"
+          - article [ref=e261]:
+            - generic [ref=e263]:
+              - generic [ref=e264]:
+                - generic [ref=e265]: "03"
+                - generic [ref=e266]:
+                  - paragraph [ref=e267]: Asset Class 03
+                  - heading "Analytical Coverage" [level=3] [ref=e268]
+              - paragraph [ref=e269]: Cross-cutting themes — the variables shaping every other segment we cover.
+              - list [ref=e270]:
+                - listitem [ref=e271]:
+                  - link "Mixed-use Development Vertical urbanism" [ref=e272] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e273]: Mixed-use Development
+                    - generic [ref=e274]: Vertical urbanism
+                    - generic [ref=e275]: "->"
+                - listitem [ref=e276]:
+                  - link "Land Development Title, FAR, FSI" [ref=e277] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e278]: Land Development
+                    - generic [ref=e279]: Title, FAR, FSI
+                    - generic [ref=e280]: "->"
+                - listitem [ref=e281]:
+                  - link "Policy & Regulation RERA, GST, FDI" [ref=e282] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e283]: Policy & Regulation
+                    - generic [ref=e284]: RERA, GST, FDI
+                    - generic [ref=e285]: "->"
+                - listitem [ref=e286]:
+                  - link "Trends & Cycles Macro & demand" [ref=e287] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e288]: Trends & Cycles
+                    - generic [ref=e289]: Macro & demand
+                    - generic [ref=e290]: "->"
+              - generic [ref=e291]:
+                - generic [ref=e292]:
+                  - generic [ref=e293]: "24"
+                  - generic [ref=e294]: sub-themes mapped
+                - link "View coverage" [ref=e295] [cursor=pointer]:
+                  - /url: "#markets"
+                  - text: View coverage
+                  - generic [ref=e296]: "->"
+          - article [ref=e297]:
+            - generic [ref=e299]:
+              - generic [ref=e300]:
+                - generic [ref=e301]: "04"
+                - generic [ref=e302]:
+                  - paragraph [ref=e303]: Asset Class 04
+                  - heading "Other Asset Classes" [level=3] [ref=e304]
+              - paragraph [ref=e305]: Operator-led, lease-light — the segments redefining how space gets used.
+              - list [ref=e306]:
+                - listitem [ref=e307]:
+                  - link "Co-living Managed residential" [ref=e308] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e309]: Co-living
+                    - generic [ref=e310]: Managed residential
+                    - generic [ref=e311]: "->"
+                - listitem [ref=e312]:
+                  - link "Co-working Flex office" [ref=e313] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e314]: Co-working
+                    - generic [ref=e315]: Flex office
+                    - generic [ref=e316]: "->"
+                - listitem [ref=e317]:
+                  - link "Student Housing Tier-1 university hubs" [ref=e318] [cursor=pointer]:
+                    - /url: "#markets"
+                    - generic [ref=e319]: Student Housing
+                    - generic [ref=e320]: Tier-1 university hubs
+                    - generic [ref=e321]: "->"
+              - generic [ref=e322]:
+                - generic [ref=e323]:
+                  - generic [ref=e324]: 3.2x
+                  - generic [ref=e325]: YoY coverage growth
+                - link "View coverage" [ref=e326] [cursor=pointer]:
+                  - /url: "#markets"
+                  - text: View coverage
+                  - generic [ref=e327]: "->"
+    - generic [ref=e328]:
+      - generic [ref=e329]:
+        - paragraph [ref=e330]: Studio
+        - heading "Interviews, debates, and industry engagement." [level=2] [ref=e331]
+      - generic [ref=e332]:
+        - generic [ref=e333]:
+          - heading "Conversations" [level=3] [ref=e335]
+          - generic [ref=e337]:
+            - generic [ref=e338]: Podcast | Ep. 162
+            - heading "Navigating Distressed Assets in 2024" [level=4] [ref=e339]
+          - generic [ref=e340]:
+            - generic [ref=e341]:
+              - generic [ref=e342]: ▶
+              - generic [ref=e343]:
+                - 'heading "Interview: CEO of Blackstone on European Expansion" [level=5] [ref=e344]'
+                - paragraph [ref=e345]: 45 min listen · Hosted by L. Sterling
+            - generic [ref=e346]:
+              - generic [ref=e347]: ▶
+              - generic [ref=e348]:
+                - 'heading "Panel: Sustainable Building Materials & ESG Compliance" [level=5] [ref=e349]'
+                - paragraph [ref=e350]: 52 min listen · Industry panel
+        - generic [ref=e351]:
+          - heading "Events" [level=3] [ref=e353]
+          - generic [ref=e354]:
+            - generic [ref=e356]: ● Live Summit
+            - heading "Global Real Estate Leaders Summit 2024" [level=4] [ref=e357]
+            - paragraph [ref=e358]: Join 500+ institutional investors and developers for a two-day macro-economic briefing.
+            - generic [ref=e359]:
+              - generic [ref=e360]:
+                - strong [ref=e361]: "14"
+                - generic [ref=e362]: Days
+              - generic [ref=e363]:
+                - strong [ref=e364]: "08"
+                - generic [ref=e365]: Hours
+              - generic [ref=e366]:
+                - strong [ref=e367]: "45"
+                - generic [ref=e368]: Mins
+              - generic [ref=e369]:
+                - strong [ref=e370]: "22"
+                - generic [ref=e371]: Secs
+          - generic [ref=e373]:
+            - generic [ref=e374]:
+              - generic [ref=e375]: Nov
+              - generic [ref=e376]: "12"
+            - generic [ref=e377]:
+              - 'heading "Webinar: Asian Markets Q4 Outlook" [level=5] [ref=e378]'
+              - paragraph [ref=e379]: Virtual · Free for subscribers
+    - generic [ref=e380]:
+      - generic [ref=e381]:
+        - generic [ref=e382]:
+          - generic [ref=e383]:
+            - paragraph [ref=e384]: About
+            - heading "Method before momentum." [level=2] [ref=e385]
+          - figure "Leadership Desk Founder & CEO The principal voice behind Top Storey, shaping its editorial discipline, market lens, and accountability-first approach." [ref=e386]:
+            - generic [ref=e387]:
+              - generic [ref=e388]: CEO
+              - img "Founder & CEO" [ref=e389]
+            - generic [ref=e390]:
+              - generic [ref=e391]: Leadership Desk
+              - generic [ref=e392]: Founder & CEO
+              - paragraph [ref=e393]: The principal voice behind Top Storey, shaping its editorial discipline, market lens, and accountability-first approach.
+        - generic [ref=e394]:
+          - article [ref=e395]:
+            - generic [ref=e396]: "01"
+            - generic [ref=e397]:
+              - heading "Our Philosophy" [level=3] [ref=e398]
+              - paragraph [ref=e399]: A clearer explanation of what Top Storey stands for and how the platform operates.
+          - article [ref=e400]:
+            - generic [ref=e401]: "02"
+            - generic [ref=e402]:
+              - heading "Editorial Policy" [level=3] [ref=e403]
+              - paragraph [ref=e404]: Our approach, thought process, and methodology behind selecting and curating stories.
+          - article [ref=e405]:
+            - generic [ref=e406]: "03"
+            - generic [ref=e407]:
+              - heading "Contact" [level=3] [ref=e408]
+              - paragraph [ref=e409]: A clearer explanation of what Top Storey stands for and how the platform operates.
+      - generic [ref=e410]:
+        - generic [ref=e412]:
+          - paragraph [ref=e413]: Contact
+          - heading "Independent journalism with accountability built into the frame." [level=2] [ref=e414]
+        - paragraph [ref=e415]: In an industry often shaped by promotion, Top Storey is positioned as an analytical newsroom. The product should feel like a publication first.
+        - generic "Editorial operating principles" [ref=e416]:
+          - generic [ref=e417]: Independent
+          - generic [ref=e418]: Research-led
+          - generic [ref=e419]: Accountable
+        - generic [ref=e420]:
+          - paragraph [ref=e421]:
+            - generic [ref=e422]: "01"
+            - text: Rigorous journalism
+          - paragraph [ref=e423]:
+            - generic [ref=e424]: "02"
+            - text: Disciplined research
+          - paragraph [ref=e425]:
+            - generic [ref=e426]: "03"
+            - text: Market-grounded analysis
+        - text: TOP STOREY
+  - contentinfo [ref=e427]:
+    - generic [ref=e428]:
+      - generic [ref=e429]:
+        - generic [ref=e430]:
+          - text: TS
+          - paragraph [ref=e432]: Top Storey
+        - paragraph [ref=e433]: The definitive source for Indian real estate intelligence, data-driven research, and authoritative editorial content.
+        - generic [ref=e434]:
+          - link "X" [ref=e435] [cursor=pointer]:
+            - /url: /
+          - link "LinkedIn" [ref=e436] [cursor=pointer]:
+            - /url: /
+            - text: in
+          - link "YouTube" [ref=e437] [cursor=pointer]:
+            - /url: /
+            - text: ▶
+      - generic [ref=e438]:
+        - heading "Sections" [level=3] [ref=e439]
+        - link "Latest News" [ref=e440] [cursor=pointer]:
+          - /url: /
+        - link "Featured Reports" [ref=e441] [cursor=pointer]:
+          - /url: /
+        - link "Market Analysis" [ref=e442] [cursor=pointer]:
+          - /url: /
+        - link "City Data" [ref=e443] [cursor=pointer]:
+          - /url: /
+        - link "Podcasts" [ref=e444] [cursor=pointer]:
+          - /url: /
+      - generic [ref=e445]:
+        - heading "Company" [level=3] [ref=e446]
+        - link "About Us" [ref=e447] [cursor=pointer]:
+          - /url: /
+        - link "Editorial Board" [ref=e448] [cursor=pointer]:
+          - /url: /
+        - link "Careers" [ref=e449] [cursor=pointer]:
+          - /url: /
+        - link "Contact" [ref=e450] [cursor=pointer]:
+          - /url: /
+        - link "Advertise" [ref=e451] [cursor=pointer]:
+          - /url: /
+      - generic [ref=e452]:
+        - heading "Legal" [level=3] [ref=e453]
+        - link "Terms of Service" [ref=e454] [cursor=pointer]:
+          - /url: /
+        - link "Privacy Policy" [ref=e455] [cursor=pointer]:
+          - /url: /
+        - link "Cookie Policy" [ref=e456] [cursor=pointer]:
+          - /url: /
+        - link "Accessibility" [ref=e457] [cursor=pointer]:
+          - /url: /
+    - generic [ref=e458]:
+      - paragraph [ref=e459]: © 2026 Top Storey Media Group. All rights reserved.
+      - button "Back to top ↑" [ref=e460] [cursor=pointer]
+      - generic [ref=e461]: Designed for Institutional Research

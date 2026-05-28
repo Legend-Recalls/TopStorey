@@ -276,13 +276,17 @@ export function useScrollCoordinator() {
       const trigger = ScrollTrigger.create({
         id: 'section:featured',
         trigger: section,
-        start: 'top top',
+        start: () => `top ${getMastheadOffset()}`,
         end: () => `+=${state.total}`,
         pin: true,
         pinSpacing: 'margin',
         pinType: 'fixed',
         invalidateOnRefresh: true,
         refreshPriority: 200,
+        onRefreshInit: () => {
+          recalc()
+          gsap.set(track, { x: 0 })
+        },
         onRefresh: recalc,
         onUpdate: (self) => {
           const px = self.progress * state.total

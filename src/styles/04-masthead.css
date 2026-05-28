@@ -309,6 +309,14 @@
   transform: translateX(-50%) translateY(6px);
 }
 
+.masthead-dropdown-mega {
+  width: min(920px, calc(100vw - 2rem));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.65rem;
+  padding: 0.7rem;
+}
+
 /* Bridge for hover gap */
 .masthead-dropdown-bridge {
   position: absolute;
@@ -371,6 +379,17 @@
   background: color-mix(in srgb, var(--color-background) 52%, transparent);
 }
 
+.masthead-dropdown-mega .masthead-dropdown-section {
+  display: block;
+  min-height: 0;
+  padding: 0.55rem 0.5rem 0.6rem;
+}
+
+.masthead-dropdown-mega .masthead-dropdown-section-empty {
+  border-color: color-mix(in srgb, var(--color-border) 42%, transparent);
+  background: color-mix(in srgb, var(--color-background) 34%, transparent);
+}
+
 .masthead-dropdown-section-title {
   display: flex;
   align-items: center;
@@ -384,6 +403,24 @@
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.1;
+}
+
+.masthead-dropdown-mega .masthead-dropdown-section-title {
+  align-items: flex-start;
+  min-height: 2.35rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.masthead-dropdown-mega .masthead-dropdown-section-empty .masthead-dropdown-section-title {
+  min-height: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .masthead-dropdown-section-title::before {
@@ -400,6 +437,21 @@
   gap: 0.02rem;
   padding-left: 0.28rem;
   border-left: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+.masthead-dropdown-mega .masthead-dropdown-section-links {
+  gap: 0.06rem;
+  padding-left: 0;
+  border-left: 0;
+}
+
+.masthead-dropdown-direct-link {
+  align-self: end;
+  margin-top: 0.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  border-radius: 0;
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
 }
 
 
@@ -647,6 +699,18 @@
   .masthead-dropdown-wide {
     width: auto;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .masthead-dropdown-mega {
+    grid-template-columns: 1fr;
+  }
+
+  .masthead-dropdown-mega .masthead-dropdown-section {
+    min-height: 0;
+  }
+
+  .masthead-dropdown-mega .masthead-dropdown-section-title {
+    min-height: 0;
   }
 
   .masthead-nav-item:hover .masthead-dropdown,
