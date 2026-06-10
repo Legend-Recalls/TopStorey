@@ -16,95 +16,26 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScrollCoordinator } from './hooks/useScrollCoordinator'
 import { StoryPage } from './pages/StoryPage'
+import { PropertyPage } from './pages/PropertyPage'
+import { EventPage } from './pages/EventPage'
 import ceoFounderImage from './static/images.jpg'
+import { homepageStoryGroups, storyPath } from './data/storyCatalog'
+import conversationsData from './data/conversations.json'
+import eventsData from './data/events.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const featuredStories = [
-  {
-    category: 'Policy & Regulation',
-    image:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-    title: 'Rate easing is changing buyer timing, but not in the way developers expected.',
-    slug: 'rate-easing-changing-buyer-timing',
-    meta: '85K views · 4 min read',
-    summary:
-      'A closer read on financing sentiment, launch discipline, and how policy noise is feeding selective demand.',
-  },
-  {
-    category: 'Cities | Bengaluru',
-    image:
-      'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80',
-    title: 'Peripheral growth is no longer a fringe story. Infrastructure sequencing now decides pricing power.',
-    slug: 'peripheral-growth-infrastructure-sequencing-pricing-power',
-    meta: '41K views · 5 min read',
-    summary:
-      'Where absorption is real, where speculation is outrunning fundamentals, and which micro-markets are diverging.',
-  },
-  {
-    category: 'Commercial',
-    image:
-      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
-    title: 'Office demand is stabilising, yet leasing headlines still hide asset-quality dispersion.',
-    slug: 'office-demand-stabilising-leasing-headlines-hide-dispersion',
-    meta: '37K views · 4 min read',
-    summary:
-      'Top Storey tracks what headline leasing numbers miss: tenant mix, location resilience, and replacement risk.',
-  },
-]
+const featuredStories = homepageStoryGroups.featured
+const latestStories = homepageStoryGroups.latest
+const mostRead = homepageStoryGroups.trending
 
-const latestStories = [
-  {
-    category: 'Lead Story | Markets',
-    image:
-      'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80',
-    title: "India's next real estate cycle will be decided by discipline, not just demand.",
-    slug: 'indias-next-real-estate-cycle-discipline-demand',
-    summary:
-      'Developers are launching into a more selective market. Capital is rewarding credibility over noise. The next phase belongs to platforms that can separate narrative from evidence.',
-  },
-  {
-    category: 'Cities | Mumbai Metropolitan Region',
-    image:
-      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1200&q=80',
-    title: 'Inventory is rising, but genuine premium scarcity is still localised.',
-    slug: 'inventory-rising-premium-scarcity-localised',
-  },
-  {
-    category: 'Commercial',
-    image:
-      'https://images.unsplash.com/photo-1497366412874-3415097a27e7?auto=format&fit=crop&w=1200&q=80',
-    title: 'Office recovery stories keep improving, though asset-quality dispersion remains sharp.',
-    slug: 'office-recovery-asset-quality-dispersion',
-  },
-  {
-    category: 'Policy & Regulation',
-    image:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80',
-    title: 'Approval velocity is becoming the hidden variable behind launch timing.',
-    slug: 'approval-velocity-hidden-variable-launch-timing',
-    summary:
-      'Regulatory clarity is not just reducing friction. It is reshaping which developers can convert land into credible supply.',
-  },
-  {
-    category: 'Residential | Bengaluru',
-    image:
-      'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1600&q=80',
-    title: 'Peripheral growth corridors are separating infrastructure-led demand from speculation.',
-    slug: 'peripheral-growth-corridors-infrastructure-led-demand',
-    summary:
-      'Absorption is becoming more selective as buyers distinguish delivery confidence from corridor storytelling.',
-  },
-  {
-    category: 'Capital Markets',
-    image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80',
-    title: 'Investor patience is thinning for platforms that cannot prove execution discipline.',
-    slug: 'investor-patience-thinning-execution-discipline',
-    summary:
-      'Capital is still available, but underwriting now rewards governance, delivery history, and cleaner land pipelines.',
-  },
-]
+const tickerItems = homepageStoryGroups.latest.map((story) => ({
+  text: `${story.category.split(' | ').pop()}: ${story.title}`,
+  link: storyPath(story.slug),
+}))
+
+const conversations = conversationsData.filter(c => c.featured).slice(0, 3)
+const events = eventsData.filter(e => e.featured)
 
 const marketColumns = [
   {
@@ -164,75 +95,6 @@ const marketColumns = [
   },
 ]
 
-const conversations = [
-  {
-    title: 'Navigating Distressed Assets in 2024',
-    type: 'Podcast',
-    episode: 'Ep. 162',
-    image:
-      'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Interview: CEO of Blackstone on European Expansion',
-    meta: '45 min listen · Hosted by L. Sterling',
-  },
-  {
-    title: 'Panel: Sustainable Building Materials & ESG Compliance',
-    meta: '52 min listen · Industry panel',
-  },
-]
-
-const events = [
-  {
-    title: 'Global Real Estate Leaders Summit 2024',
-    label: 'Live Summit',
-    location: 'London, UK (Hybrid)',
-    description:
-      'Join 500+ institutional investors and developers for a two-day macro-economic briefing.',
-    cta: 'Register Now',
-    countdown: [
-      { value: '14', unit: 'Days' },
-      { value: '08', unit: 'Hours' },
-      { value: '45', unit: 'Mins' },
-      { value: '22', unit: 'Secs' },
-    ],
-  },
-  {
-    month: 'Nov',
-    day: '12',
-    title: 'Webinar: Asian Markets Q4 Outlook',
-    meta: 'Virtual · Free for subscribers',
-  },
-]
-
-const mostRead = [
-  {
-    label: 'Most clicked',
-    title: 'Why premium launches are holding velocity while mass housing demand fragments.',
-    slug: 'premium-launches-holding-velocity-mass-housing-fragments',
-    meta: '62K views · 4 min read',
-  },
-  {
-    label: 'Most shared',
-    title: 'What the latest land deals actually reveal about developer risk appetite.',
-    slug: 'latest-land-deals-developer-risk-appetite',
-    meta: '49K views · 6 min read',
-  },
-  {
-    label: 'Most discussed',
-    title: 'Is branded real estate research becoming marketing theatre or public utility?',
-    slug: 'branded-real-estate-research-marketing-theatre-public-utility',
-    meta: '44K views · 5 min read',
-  },
-]
-
-const tickerItems = [
-  'Policy watch: approval velocity is reshaping launch timing across major urban markets.',
-  'Capital flows: investors are getting more selective on execution credibility and land discipline.',
-  'Cities: infrastructure sequencing is now a bigger pricing variable than headline supply.',
-  'Commercial: leasing recovery remains uneven across asset quality and micro-market depth.',
-  'Research: Top Storey tracks what promotional narratives leave out of the market cycle.',
-]
 
 const navItems = [
   { label: 'Latest', href: '#latest' },
@@ -451,6 +313,18 @@ export default function App() {
       <Route
         path="/stories/:slug"
         element={<StoryPage navItems={navItems} footerSections={footerSections} />}
+      />
+      <Route
+        path="/properties/:id"
+        element={<PropertyPage navItems={navItems} footerSections={footerSections} />}
+      />
+      <Route
+        path="/events"
+        element={<EventPage navItems={navItems} footerSections={footerSections} />}
+      />
+      <Route
+        path="/events/:slug"
+        element={<EventPage navItems={navItems} footerSections={footerSections} />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

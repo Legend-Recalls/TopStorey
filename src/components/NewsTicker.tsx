@@ -1,8 +1,14 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { Link } from 'react-router-dom'
+
+export interface TickerItem {
+  text: string
+  link?: string
+}
 
 interface NewsTickerProps {
-  items: string[]
+  items: TickerItem[]
 }
 
 export function NewsTicker({ items }: NewsTickerProps) {
@@ -50,12 +56,19 @@ export function NewsTicker({ items }: NewsTickerProps) {
       <div className="ticker-track">
         <div ref={tickerRef} className="ticker-content">
           {doubled.map((item, i) => (
-            <span key={i} className="ticker-item">
-              {item}
-            </span>
+            item.link ? (
+              <Link key={i} to={item.link} className="ticker-item">
+                {item.text}
+              </Link>
+            ) : (
+              <span key={i} className="ticker-item">
+                {item.text}
+              </span>
+            )
           ))}
         </div>
       </div>
     </div>
   )
 }
+

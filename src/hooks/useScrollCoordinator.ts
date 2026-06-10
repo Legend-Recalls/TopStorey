@@ -412,9 +412,13 @@ export function useScrollCoordinator() {
     }
 
     const getTargetTop = (id: string) => {
-      const item = window.__scrollMap?.find((entry) => entry.id === id)
+      let targetId = id
+      if (id === 'conversations' || id === 'events') {
+        targetId = 'studio'
+      }
+      const item = window.__scrollMap?.find((entry) => entry.id === targetId)
       if (item) return Math.max(0, item.start - getMastheadOffset())
-      return Math.max(0, normalSectionTop(id) - getMastheadOffset())
+      return Math.max(0, normalSectionTop(targetId) - getMastheadOffset())
     }
 
     const currentIndex = () => {
@@ -460,7 +464,7 @@ export function useScrollCoordinator() {
 
     const onHashChange = () => {
       const id = window.location.hash.replace('#', '')
-      if (SECTION_IDS.includes(id)) jumpToId(id)
+      if (SECTION_IDS.includes(id) || id === 'conversations' || id === 'events') jumpToId(id)
     }
 
     createLatest()

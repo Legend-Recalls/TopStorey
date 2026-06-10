@@ -1,6 +1,7 @@
 [
   {
     "title": "Global Real Estate Leaders Summit 2024",
+    "slug": "global-real-estate-leaders-summit-2024",
     "label": "Live Summit",
     "location": "London, UK (Hybrid)",
     "description": "Join 500+ institutional investors and developers for a two-day macro-economic briefing.",
@@ -12,87 +13,183 @@
       { "value": "22", "unit": "Secs" }
     ],
     "featured": true,
-    "date": "2026-06-01"
+    "date": "2026-06-01",
+    "pressBriefing": [
+      "The Global Real Estate Leaders Summit remains the premier cross-border platform for institutional allocators and platform sponsors. In 2026, the discussion focuses heavily on capital allocation discipline, refinancing spreads, and structural tenant shifts across key metropolitan markets.",
+      "Top Storey's editorial team will be on the ground reporting live. We will trace how global macro-economic policies are reshaping launch timing and local pricing power in emerging and gateway markets alike."
+    ],
+    "speakers": [
+      "Rhea Kapoor (Capital Markets)",
+      "Lord Sterling (European Expansion Analyst)",
+      "Aarav Menon (Markets Desk)"
+    ],
+    "agenda": [
+      { "time": "09:30 AM", "topic": "Keynote Address: Easing Cycles & Sovereign Bond Spreads" },
+      { "time": "11:00 AM", "topic": "Panel: The Grade-A Tenant Split in Gateway Office Cities" },
+      { "time": "02:30 PM", "topic": "Roundtable: Logistics and Infrastructure Sequencing Dynamics" }
+    ]
   },
   {
     "month": "Nov",
     "day": "12",
     "title": "Webinar: Asian Markets Q4 Outlook",
+    "slug": "webinar-asian-markets-q4-outlook",
+    "label": "Webinar",
+    "location": "Virtual",
     "meta": "Virtual · Free for subscribers",
     "featured": true,
-    "date": "2026-11-12"
+    "date": "2026-11-12",
+    "pressBriefing": [
+      "As Q4 approaches, we look at the shifting macroeconomic indicators in the Asia-Pacific region. Our focus is on regulatory policies, far-corridor growth sequencing, and core absorption levels across Tier-1 hub cities.",
+      "This briefing will equip subscribers with exclusive data pipelines ahead of the year-end planning cycle."
+    ],
+    "speakers": [
+      "Meera Sanyal (Cities Correspondent)",
+      "Aarav Menon (Markets Editor)"
+    ],
+    "agenda": [
+      { "time": "03:00 PM", "topic": "Overview: APAC Supply Absorption and Yield Profiles" },
+      { "time": "04:00 PM", "topic": "Q&A: Underwriting Governance and Land Pipelines" }
+    ]
   },
   {
     "month": "Jun",
     "day": "20",
     "title": "India Real Estate Conclave 2026",
+    "slug": "india-real-estate-conclave-2026",
     "label": "Conference",
     "location": "Mumbai, India",
     "description": "India's largest annual gathering of developers, investors, and policymakers.",
     "meta": "In-person · Invitation only",
     "featured": true,
-    "date": "2026-06-20"
+    "date": "2026-06-20",
+    "pressBriefing": [
+      "The annual Conclave convenes under a market backdrop defined by high selective demand. While inventory numbers grow, premium launch velocity remains localized.",
+      "Top Storey will lead two central panels on FAR, FAR conversion velocity, and RERA delivery accountability."
+    ],
+    "speakers": [
+      "Aarav Menon (Markets Editor)",
+      "Meera Sanyal (Cities Desk)"
+    ],
+    "agenda": [
+      { "time": "10:00 AM", "topic": "Panel: Land FAR and Far-Corridor Infrastructure Realities" },
+      { "time": "01:30 PM", "topic": "Debate: Premium Scarcity vs. Mass Housing Affordability" }
+    ]
   },
   {
     "month": "Jul",
     "day": "05",
     "title": "Roundtable: ESG Compliance in Indian Real Estate",
+    "slug": "roundtable-esg-compliance-indian-real-estate",
+    "label": "Roundtable",
+    "location": "Virtual",
     "meta": "Virtual · Open to all",
     "featured": true,
-    "date": "2026-07-05"
+    "date": "2026-07-05",
+    "pressBriefing": [
+      "Regulatory bodies are quietly raising the baseline for sustainable construction and supply chain audit trails.",
+      "We report on what these compliance updates mean for green finance capital spreads and asset-upgrade programs."
+    ],
+    "speakers": [
+      "Rhea Kapoor (Capital Markets)",
+      "Dr. S. Nair (Environmental Infrastructure)"
+    ],
+    "agenda": [
+      { "time": "02:00 PM", "topic": "Keynote: Green Capital Pools and Premium Spreads" },
+      { "time": "03:15 PM", "topic": "Case Studies: Energy-Efficient Building Retrofits" }
+    ]
   },
   {
     "month": "Jul",
     "day": "18",
     "title": "Workshop: Reading Land Revenue Records for Due Diligence",
+    "slug": "workshop-reading-land-revenue-records-due-diligence",
+    "label": "Workshop",
+    "location": "Bengaluru",
     "meta": "Bengaluru · ₹2,500 fee",
     "featured": true,
-    "date": "2026-07-18"
+    "date": "2026-07-18",
+    "pressBriefing": [
+      "Title dispute risk remains a persistent friction in land pipeline conversions. This technical workshop details practical revenue reading for institutional underwriters.",
+      "Top Storey's cities desk provides a walk-through on municipal Far clearances, Far-encroachment risks, and title sequencing."
+    ],
+    "speakers": [
+      "Meera Sanyal (Cities Correspondent)"
+    ],
+    "agenda": [
+      { "time": "09:00 AM", "topic": "Introduction to RTC, Mutated Deeds, and Encumbrances" },
+      { "time": "11:30 AM", "topic": "Case Analysis: Discrepancy Spotting in Bengaluru Urban Peripheries" }
+    ]
   },
   {
-    "month": "Aug",
-    "day": "02",
-    "title": "Webinar: Co-living Demand Trends Across Tier-1 Cities",
-    "meta": "Virtual · Free for subscribers",
+    "month": "May",
+    "day": "15",
+    "title": "MIPIM Cannes Global Summit 2026",
+    "slug": "mipim-cannes-global-summit-2026",
+    "label": "Press Briefing",
+    "location": "Cannes, France",
+    "meta": "Post-Event Editorial Report",
     "featured": true,
-    "date": "2026-08-02"
+    "date": "2026-05-15",
+    "pressBriefing": [
+      "The Cannes Summit concluded with a clear consensus: institutional capital is resuming active underwriting, but the underwriting criteria has structurally pivoted toward governance and execution history rather than speculative far-land banks.",
+      "Our team reported live from the Carlton, charting key conversations with major private equity sponsors and municipal developers."
+    ],
+    "speakers": [
+      "Rhea Kapoor (Capital Markets)",
+      "Lord Sterling (European Markets Desk)"
+    ],
+    "keyTakeaways": [
+      "Sovereign funds are pricing in a longer cost-of-capital cycle, rewarding sponsors with governance over asset scale.",
+      "Green premiums are no longer optional additions; they are key underwriting baselines for European and Asian pension pools.",
+      "Mixed-use vertical urbanism is capturing the highest secondary yield resilience across Tier-1 global transit cities."
+    ]
   },
   {
-    "month": "Sep",
-    "day": "10",
-    "title": "MIPIM Asia Pacific 2026",
-    "label": "Trade Fair",
-    "location": "Hong Kong",
-    "description": "The leading property leaders summit connecting Asia-Pacific markets.",
-    "meta": "In-person · Delegate pass required",
-    "featured": false,
-    "date": "2026-09-10"
-  },
-  {
-    "month": "Sep",
-    "day": "25",
-    "title": "Panel: How RERA Changed Consumer Confidence",
-    "meta": "Virtual · Free for subscribers",
-    "featured": false,
-    "date": "2026-09-25"
-  },
-  {
-    "month": "Oct",
-    "day": "14",
-    "title": "Top Storey Annual Awards 2026",
-    "label": "Awards Ceremony",
+    "month": "May",
+    "day": "02",
+    "title": "Roundtable: Distressed Assets and Re-capitalization",
+    "slug": "roundtable-distressed-assets-recapitalization",
+    "label": "Press Briefing",
     "location": "New Delhi, India",
-    "description": "Recognising excellence in real estate journalism, research, and market transparency.",
-    "meta": "In-person · By invitation",
-    "featured": false,
-    "date": "2026-10-14"
+    "meta": "Post-Event Editorial Report",
+    "featured": true,
+    "date": "2026-05-02",
+    "pressBriefing": [
+      "A select closed-door roundtable of lenders, asset reconstruction firms, and capital sponsors convened to assess distressed asset absorption corridors. We tracked key insights on Far resolution timelines and liquidity exit paths.",
+      "In contrast to public marketing narratives, deep balance-sheet restructurings are requiring significant FAR modifications and pricing corrections before secondary entry."
+    ],
+    "speakers": [
+      "Rhea Kapoor (Capital Markets)",
+      "Aarav Menon (Markets Editor)"
+    ],
+    "keyTakeaways": [
+      "Asset reconstruction companies are increasingly demanding active FAR adjustments from municipal regulators to achieve viability.",
+      "Exit spreads are narrowing as secondary retail platforms selectively acquire only Grade-A distress chunks.",
+      "Title sequence resolution continues to be the single biggest bottleneck, extending restructurings by 18-24 months."
+    ]
   },
   {
-    "month": "Dec",
-    "day": "03",
-    "title": "Year-End Outlook: What 2027 Holds for Indian Real Estate",
-    "meta": "Virtual · Free for subscribers",
+    "month": "Apr",
+    "day": "12",
+    "title": "Symposium: High-Street Retail Dynamics",
+    "slug": "symposium-high-street-retail-dynamics",
+    "label": "Press Briefing",
+    "location": "Bengaluru, India",
+    "meta": "Post-Event Editorial Report",
     "featured": false,
-    "date": "2026-12-03"
+    "date": "2026-04-12",
+    "pressBriefing": [
+      "The Symposium explored the remarkable divergence between large mall performance indices and emerging high-street strata assets. Strata-ownership models are reshaping investment options, but retail lease discipline remains highly fragmented.",
+      "Our report outlines why brand anchor retention and maintenance sequencing are deciding pricing power."
+    ],
+    "speakers": [
+      "Meera Sanyal (Cities Correspondent)"
+    ],
+    "keyTakeaways": [
+      "High streets are experiencing a sharp yield spike, but replacement leasing risks are higher due to fragmented strata-ownership.",
+      "Brands are increasingly insisting on anchor-rent structures tied to localized footfall and revenue share indices.",
+      "Institutional mall operators are successfully counter-acting high-street competition by consolidating entertainment space."
+    ]
   }
 ]

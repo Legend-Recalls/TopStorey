@@ -74,6 +74,12 @@
   font-size: 0.82rem;
   font-weight: 400;
   letter-spacing: 0.005em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ticker-item:hover {
+  color: var(--color-primary);
 }
 
 .ticker-item::after {

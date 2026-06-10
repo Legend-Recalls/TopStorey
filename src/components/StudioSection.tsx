@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 interface ConversationItem {
   title: string
   type?: string
@@ -13,6 +15,7 @@ interface EventCountdown {
 
 interface EventItem {
   title: string
+  slug: string
   label?: string
   location?: string
   description?: string
@@ -29,8 +32,13 @@ interface StudioSectionProps {
 }
 
 export function StudioSection({ conversations, events }: StudioSectionProps) {
-  const [heroConversation, ...listConversations] = conversations
-  const [heroEvent, ...listEvents] = events
+  const [heroConversation, ...allListConversations] = conversations
+  const listConversations = allListConversations.slice(0, 2)
+  const hasMoreConversations = allListConversations.length > 2
+
+  const [heroEvent, ...allListEvents] = events
+  const listEvents = allListEvents.slice(0, 2)
+  const hasMoreEvents = allListEvents.length > 2
 
   return (
     <section className="section studio-section snap-section" id="studio">
@@ -71,6 +79,17 @@ export function StudioSection({ conversations, events }: StudioSectionProps) {
               </div>
             ))}
           </div>
+
+          {hasMoreConversations && (
+            <div className="studio-view-all">
+              <span className="studio-view-all-link">
+                All Conversations
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Events Column */}
@@ -80,12 +99,18 @@ export function StudioSection({ conversations, events }: StudioSectionProps) {
           </div>
 
           {heroEvent && (
-            <div className="studio-hero-card event-hero">
+            <Link
+              to={`/events/${heroEvent.slug}`}
+              className="studio-hero-card event-hero clickable-event-card"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <div className="event-meta-row">
                 <span className="studio-badge live-badge">● {heroEvent.label}</span>
+                {heroEvent.location && (
+                  <span className="event-location-tag">{heroEvent.location}</span>
+                )}
               </div>
               <h4>{heroEvent.title}</h4>
-              <p>{heroEvent.description}</p>
               
               {heroEvent.countdown && (
                 <div className="countdown-grid">
@@ -97,12 +122,17 @@ export function StudioSection({ conversations, events }: StudioSectionProps) {
                   ))}
                 </div>
               )}
-            </div>
+            </Link>
           )}
 
           <div className="studio-list">
             {listEvents.map((evt, idx) => (
-              <div key={idx} className="studio-list-item event-list-item">
+              <Link
+                key={idx}
+                to={`/events/${evt.slug}`}
+                className="studio-list-item event-list-item clickable-event-item"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
                 <div className="event-date">
                   <span className="event-month">{evt.month}</span>
                   <span className="event-day">{evt.day}</span>
@@ -111,9 +141,20 @@ export function StudioSection({ conversations, events }: StudioSectionProps) {
                   <h5>{evt.title}</h5>
                   <p>{evt.meta}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
+
+          {hasMoreEvents && (
+            <div className="studio-view-all">
+              <Link to="/events" className="studio-view-all-link" style={{ textDecoration: 'none' }}>
+                All Events
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -1,0 +1,624 @@
+/* ==========================================================================
+   DEDICATED INVESTMENT PROSPECTUS PAGE
+   ========================================================================== */
+
+.property-page-shell {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  display: flex;
+  flex-direction: column;
+}
+
+.property-prospectus {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* Back navigation */
+.prospectus-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.75rem;
+}
+
+.prospectus-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.prospectus-back-link:hover {
+  color: var(--color-primary-hover);
+}
+
+.prospectus-archive-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* Header appraisal layout */
+.prospectus-header-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 800px) {
+  .prospectus-header-layout {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.prospectus-hero-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.prospectus-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prospectus-media-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Meta appraisal card */
+.prospectus-meta-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-foreground);
+  padding: 2rem;
+  border-radius: var(--radius-sm);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.prospectus-builder {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.prospectus-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+  color: var(--color-foreground);
+}
+
+.prospectus-locality {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.prospectus-valuation-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.prospectus-val-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.prospectus-val-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.prospectus-val-price {
+  font-family: var(--font-sans);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-foreground);
+  line-height: 1;
+}
+
+.prospectus-grade-badge {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prospectus-grade-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+
+.prospectus-grade-num {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+/* Description text */
+.prospectus-desc-lead {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Secondary detailed rows */
+.prospectus-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .prospectus-grid-layout {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3.5rem;
+  }
+}
+
+/* Left main content */
+.prospectus-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.prospectus-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.prospectus-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin: 0 0 1rem 0;
+  border-bottom: 2px solid var(--color-foreground);
+  padding-bottom: 0.4rem;
+}
+
+/* Editorial quote appraiser */
+.prospectus-appraisal-quote {
+  background: var(--color-surface-strong);
+  border-left: 4px solid var(--color-primary);
+  padding: 1.5rem 2rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.prospectus-appraisal-text {
+  font-family: var(--font-prose);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Financial key stats cards */
+.prospectus-financial-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .prospectus-financial-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.prospectus-fin-card {
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+}
+
+.prospectus-fin-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.prospectus-fin-val {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-foreground);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.prospectus-fin-sub {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  line-height: 1.25;
+  display: block;
+}
+
+/* Chart block styles */
+.prospectus-chart-card {
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2rem 1.5rem 1rem 1.5rem;
+}
+
+.prospectus-chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-grid-line {
+  stroke: var(--color-border);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 4;
+}
+
+.chart-dot {
+  fill: var(--color-background);
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+  transition: r 150ms ease;
+  cursor: pointer;
+}
+
+.chart-dot:hover {
+  r: 7;
+  fill: var(--color-primary);
+}
+
+.chart-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--color-text-muted);
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+/* Right sidebar: Form + Ratings */
+.prospectus-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.prospectus-sidebar-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+.prospectus-widget-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.35rem;
+}
+
+/* Ratings widget */
+.prospectus-rating-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+}
+
+.prospectus-rating-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.prospectus-rating-lbl {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  flex: 0 0 130px;
+}
+
+.prospectus-rating-bar-wrapper {
+  flex: 1;
+  height: 6px;
+  background: var(--color-surface);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.prospectus-rating-bar-filled {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 100px;
+  transition: width 800ms ease;
+}
+
+.prospectus-rating-score {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  flex: 0 0 45px;
+  text-align: right;
+}
+
+/* Investor Registration Form Card */
+.prospectus-inquiry-card {
+  background: var(--color-surface-strong);
+  border: 2px solid var(--color-foreground);
+  padding: 1.5rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.prospectus-inquiry-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem 0;
+  color: var(--color-foreground);
+}
+
+.prospectus-inquiry-header p {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin: 0 0 1.25rem 0;
+}
+
+.prospectus-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.prospectus-form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.prospectus-form-group input {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  outline: none;
+  border-radius: var(--radius-sm);
+  transition: border-color 150ms ease;
+}
+
+.prospectus-form-group input:focus {
+  border-color: var(--color-primary);
+}
+
+.prospectus-submit-btn {
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  border-radius: var(--radius-sm);
+  margin-top: 0.5rem;
+}
+
+.prospectus-submit-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.prospectus-submit-btn:disabled {
+  background: #2e6930;
+  color: #fff;
+  cursor: default;
+}
+
+/* Recommended listings footer */
+.prospectus-related-section {
+  margin-top: 4rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 2.5rem;
+}
+
+.prospectus-related-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .prospectus-related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .prospectus-related-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.related-prop-card {
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 250ms ease;
+}
+
+.related-prop-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.related-card-img-box {
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.related-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.related-card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.related-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: var(--color-foreground);
+}
+
+.related-card-locality {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.related-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.65rem;
+  margin-top: auto;
+}
+
+.related-card-price {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-foreground);
+}
+
+.related-card-btn {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}

@@ -1,190 +1,188 @@
 /* ==========================================================================
-   PROPERTY SEARCH MODULE — Broker-style search
+   PROPERTY SEARCH MODULE — Strict Viewport-Contained Terminal Layout
    ========================================================================== */
 
-.property-search-module {
-  border-top: 2px solid var(--color-foreground);
-  background: var(--color-surface);
-  padding: 1.5rem 0;
-}
-
-/* ---- Tabs ---- */
-
-.search-tabs {
+/* Overrides snap section to enforce exactly 100vh desktop viewport without leakage */
+#search.snap-section {
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
   display: flex;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: calc(clamp(1.5rem, 3.2vh, 3rem) + 2.75rem);
+  padding-bottom: clamp(1rem, 2vh, 1.5rem);
+  box-sizing: border-box;
 }
 
-.search-tab {
-  padding: 0.5rem 1.5rem;
+#search.snap-section .section-heading {
+  margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+  flex-shrink: 0;
+}
+
+#search.snap-section .reveal-item:nth-child(2) {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Dashboard Shell */
+.property-search-module.search-dashboard-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 1.5rem;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-foreground);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: SEARCH CONTROLS PANE
+   ========================================================================== */
+
+.search-controls-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+/* Compact Tabs switching Buy / Rent / New */
+.search-tabs-compact {
+  display: flex;
+  gap: 0.35rem;
+  background: color-mix(in srgb, var(--color-foreground) 4%, transparent);
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.search-tab-compact-btn {
+  flex: 1;
+  padding: 0.45rem 0.5rem;
   border: none;
   background: transparent;
   color: var(--color-text-secondary);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 150ms ease;
-  border-bottom: 2px solid transparent;
-}
-
-.search-tab:hover {
-  color: var(--color-foreground);
-}
-
-.search-tab.active {
-  color: var(--color-foreground);
-  border-bottom-color: var(--color-foreground);
-}
-
-/* ---- Search bar row ---- */
-
-.search-bar-row {
-  display: flex;
-  align-items: stretch;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
   border-radius: var(--radius-sm);
-  overflow: hidden;
-  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.search-city-select {
+.search-tab-compact-btn:hover {
+  color: var(--color-foreground);
+}
+
+.search-tab-compact-btn.active {
+  background: var(--color-surface-strong);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* City Select and text search input */
+.search-inputs-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
   flex-shrink: 0;
-  border-right: 1px solid var(--color-border);
 }
 
-.search-city-select select {
-  height: 100%;
-  padding: 0.85rem 2.5rem 0.85rem 1.25rem;
+.search-city-select-box {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-strong);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.search-city-select-box select {
+  width: 100%;
+  padding: 0.65rem 2.25rem 0.65rem 1rem;
   border: none;
   background: transparent;
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a837a'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238b2e24'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   outline: none;
 }
 
-.search-city-select select:focus {
-  border-color: var(--color-primary);
+.search-query-input-box {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-strong);
+  border-radius: var(--radius-sm);
 }
 
-.search-input-wrapper {
-  flex: 1;
-  min-width: 0;
-}
-
-.search-main-input {
+.search-compact-input {
   width: 100%;
-  height: 100%;
-  padding: 0.85rem 1.25rem;
+  padding: 0.65rem 1rem;
   border: none;
   background: transparent;
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 500;
   outline: none;
 }
 
-.search-main-input::placeholder {
+.search-compact-input::placeholder {
   color: var(--color-text-muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
-.search-main-input:focus {
-  background: color-mix(in srgb, var(--color-surface-strong) 45%, transparent);
-}
-
-.search-go-button {
-  flex-shrink: 0;
-  padding: 0 2.5rem;
-  border: none;
-  border-left: 1px solid var(--color-border);
-  background: var(--color-foreground);
-  color: var(--color-background);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 150ms ease;
-}
-
-.search-go-button:hover {
-  background: var(--color-primary);
-}
-
-/* ---- Filter row ---- */
-
-.search-filter-row {
+/* Scrollable Filter Panel */
+.controls-filters-section {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-right: 0.4rem;
+  min-height: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
 }
 
-.filter-group {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+/* Custom Scrollbar for left filters if they overflow */
+.controls-filters-section::-webkit-scrollbar {
+  width: 4px;
 }
-
-.filter-group-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  white-space: nowrap;
+.controls-filters-section::-webkit-scrollbar-track {
+  background: transparent;
 }
-
-.filter-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.filter-chip {
-  padding: 0.35rem 0.85rem;
-  border: 1px solid transparent;
-  border-radius: 100px;
-  background: var(--color-surface-strong);
-  color: var(--color-text-secondary);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 150ms ease;
-  white-space: nowrap;
-}
-
-.filter-chip:hover {
+.controls-filters-section::-webkit-scrollbar-thumb {
   background: var(--color-border);
-  color: var(--color-foreground);
+  border-radius: 2px;
 }
 
-/* ---- Quick city links ---- */
-
-.search-quick-cities {
+.control-filter-group {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  flex-wrap: wrap;
 }
 
-.quick-cities-label {
+.control-group-label {
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 700;
@@ -193,13 +191,837 @@
   color: var(--color-text-muted);
 }
 
-.quick-city-link {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  transition: color 150ms ease;
+.compact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.quick-city-link:hover {
+.compact-chip {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  background: var(--color-surface-strong);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 120ms ease;
+  white-space: nowrap;
+}
+
+.compact-chip:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-foreground);
+}
+
+.compact-chip.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Filter controls footer: Popular and Reset */
+.controls-footer {
+  flex-shrink: 0;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.85rem;
+}
+
+.quick-popular-title {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.popular-cities-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.popular-city-pill {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all 120ms ease;
+}
+
+.popular-city-pill:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.popular-city-pill.active {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border-color: var(--color-foreground);
+}
+
+.controls-reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  background: transparent;
+  border: 1px dashed var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 150ms ease;
+  border-radius: var(--radius-sm);
+}
+
+.controls-reset-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-style: solid;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: RESULTS & BRIEFING PANES
+   ========================================================================== */
+
+.search-results-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--color-border);
+  padding-left: 1.25rem;
+  background: var(--color-surface);
+}
+
+/* Header bar for Results Pane */
+.results-pane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-foreground);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.results-pane-header-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.dossier-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dossier-back-btn:hover {
   color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.results-pane-market-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Scroll Container for results */
+.pane-content-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  min-height: 0;
+}
+
+/* Custom Scrollbar for results scrollable pane */
+.pane-content-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.pane-content-scrollable::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-border) 20%, transparent);
+}
+.pane-content-scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 3px;
+}
+
+/* ==========================================
+   SUB-PANEL: COMPACT GRID OF BRIEFINGS
+   ========================================== */
+
+.pane-grid-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 1200px) {
+  .pane-grid-view {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Compact Horizontal Property Card */
+.dashboard-property-card {
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.65rem;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+}
+
+.dashboard-property-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-card-img-box {
+  width: 120px;
+  height: 90px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.dashboard-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.dashboard-property-card:hover .dashboard-card-img {
+  transform: scale(1.05);
+}
+
+.dashboard-card-badge {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 1px;
+}
+
+.dashboard-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.dashboard-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: 0.15rem;
+}
+
+.dashboard-card-locality {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-card-city {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.dashboard-card-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-foreground);
+  margin: 0 0 0.15rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+  margin: 0 0 0.45rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.dashboard-card-stats-flex {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.35rem;
+}
+
+.dashboard-card-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-stat-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  line-height: 1;
+  margin-bottom: 0.1rem;
+}
+
+.db-stat-val {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  line-height: 1;
+}
+
+.dashboard-card-stat:last-child .db-stat-val {
+  color: var(--color-primary);
+}
+
+/* ==========================================
+   SUB-PANEL: INVESTMENT APPRISAL DOSSIER
+   ========================================== */
+
+.pane-dossier-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Dossier Hero Layout */
+.dossier-hero-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .dossier-hero-row {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.dossier-img-box {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--color-surface);
+}
+
+.dossier-large-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dossier-floating-badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 1px;
+}
+
+.dossier-meta-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  position: relative;
+}
+
+.dossier-builder {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+
+.dossier-large-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.35rem 0;
+  color: var(--color-foreground);
+}
+
+.dossier-sub-loc {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.dossier-price-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.dossier-price-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.dossier-price-val {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-foreground);
+}
+
+.dossier-intel-pill {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dossier-intel-label {
+  font-family: var(--font-mono);
+  font-size: 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  line-height: 1;
+  margin-bottom: 0.1rem;
+}
+
+.dossier-intel-val {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+/* Appraisal commentary */
+.dossier-appraisal-box {
+  background: var(--color-surface-strong);
+  border-left: 3px solid var(--color-primary);
+  padding: 0.85rem 1.15rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dossier-section-heading {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin: 0 0 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.25rem;
+}
+
+.dossier-appraisal-text {
+  font-family: var(--font-prose);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Core financials row */
+.dossier-financials-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.dossier-fin-card {
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.dossier-fin-label {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.dossier-fin-val {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-foreground);
+  margin-bottom: 0.15rem;
+}
+
+.dossier-fin-sub {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+}
+
+/* Historical Price Projection chart card */
+.dossier-chart-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.dossier-chart-card {
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 0.85rem 0.75rem 0.85rem;
+}
+
+.dossier-chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-grid-line {
+  stroke: var(--color-border);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 4;
+}
+
+.chart-dot {
+  fill: var(--color-background);
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+  transition: r 150ms ease;
+  cursor: pointer;
+}
+
+.chart-dot:hover {
+  r: 6.5;
+  fill: var(--color-primary);
+}
+
+.chart-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--color-text-muted);
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+/* Ratings connectivity and civic */
+.dossier-rating-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.dossier-rating-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.dossier-rating-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.dossier-rating-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  flex: 0 0 120px;
+}
+
+.dossier-rating-bar-wrapper {
+  flex: 1;
+  height: 5px;
+  background: var(--color-surface);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.dossier-rating-bar-filled {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 100px;
+  transition: width 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dossier-rating-score-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  flex: 0 0 35px;
+  text-align: right;
+}
+
+/* Inquiry button row */
+.dossier-action-row {
+  margin-top: 0.5rem;
+}
+
+.dossier-action-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  border-radius: var(--radius-sm);
+}
+
+.dossier-action-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.dossier-action-btn.success {
+  background: #2e6930;
+  color: #fff;
+  cursor: default;
+}
+
+/* ==========================================
+   SUB-PANEL: RECOMMENDATION FALLBACK STATE
+   ========================================== */
+
+.pane-fallback-view {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: var(--color-surface-strong);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fallback-search-icon {
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.pane-fallback-view h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.pane-fallback-view p {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin: 0 0 1.25rem 0;
+  max-width: 380px;
+}
+
+.fallback-reset-btn {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border: none;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.fallback-reset-btn:hover {
+  background: var(--color-primary);
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE STACK CONFIGURATION
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  /* Let search section expand normally and stack vertically on mobile */
+  #search.snap-section {
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+
+  #search.snap-section .reveal-item:nth-child(2) {
+    height: auto;
+    overflow: visible;
+  }
+
+  .property-search-module.search-dashboard-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .search-controls-pane {
+    height: auto;
+    overflow: visible;
+  }
+
+  .controls-filters-section {
+    overflow-y: visible;
+    height: auto;
+    max-height: none;
+    padding-right: 0;
+  }
+
+  .search-results-pane {
+    border-left: none;
+    padding-left: 0;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+    margin-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .pane-content-scrollable {
+    overflow-y: visible;
+    height: auto;
+    max-height: none;
+    padding-right: 0;
+  }
+
+  .pane-grid-view {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-property-card {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.85rem;
+  }
+
+  .dashboard-card-img-box {
+    width: 100%;
+    height: 180px;
+  }
 }

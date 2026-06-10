@@ -224,29 +224,224 @@
   #search .filter-chip {
     padding: clamp(0.2rem, 0.4vh, 0.35rem) 0.85rem;
     font-size: clamp(0.68rem, 0.9vw, 0.75rem);
+    --landing-hero-gap: 1rem;
+    --landing-bottom-safe: clamp(1.5rem, 3svh, 2.75rem);
+    --landing-hero-height: calc(100svh - var(--landing-nav-height) - var(--landing-ticker-height) - var(--landing-hero-gap) - var(--landing-bottom-safe));
+    align-content: start;
+    grid-template-rows:
+      var(--landing-nav-height) var(--landing-ticker-height) minmax(0, var(--landing-hero-height));
+    padding-block: 0 var(--landing-bottom-safe);
+  }
+
+  .snap-panel-landing .top-news-band {
+    min-height: 0;
+    height: var(--landing-hero-height);
+    max-height: var(--landing-hero-height);
+    margin-top: var(--landing-hero-gap);
+    margin-bottom: 0;
+  }
+
+  .snap-panel-landing .newsroom-hero {
+    min-height: 0;
+    height: var(--landing-hero-height);
+    max-height: var(--landing-hero-height);
+  }
+
+  .snap-panel-landing .lead-story-card {
+    height: var(--landing-hero-height);
+    max-height: var(--landing-hero-height);
+    min-height: 0;
+  }
+
+  .snap-panel-landing .side-story-panel {
+    height: var(--landing-hero-height);
+    max-height: var(--landing-hero-height);
+    min-height: 0;
+  }
+
+  /* ---- Featured panel ---- */
+  .featured-panel .section-heading h2 {
+    font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+    max-width: 13ch;
+  }
+
+  .featured-panel {
+    --featured-safe-block: clamp(1.5rem, 3.4svh, 2.75rem);
+    padding-block: var(--featured-safe-block);
+  }
+
+  .featured-panel .panel-grid-featured {
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .featured-panel .panel-copy {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .featured-panel .section-heading {
+    flex-shrink: 1;
+    margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+  }
+
+  .featured-panel .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 100%;
+    max-height: 100%;
+    border-top-width: 1px;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .featured-panel .story-card {
+    grid-template-columns: auto 170px minmax(0, 1fr);
+    align-items: center;
+    padding: clamp(0.75rem, 1.5vh, 1.25rem) 0;
+    min-height: 0;
+  }
+
+  .featured-panel .story-image {
+    width: 170px;
+    min-width: 170px;
+    height: min(108px, 100%);
+  }
+
+  .featured-panel .story-card h3 {
+    font-size: clamp(1.1rem, 1.4vw, 1.45rem);
+  }
+
+  .featured-panel .story-body>p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .featured-panel .trending-strip {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 0%;
+    margin-top: 0;
+    padding: 0;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .featured-panel .trending-strip-header {
+    margin-bottom: clamp(0.35rem, 0.8vh, 0.75rem);
+  }
+
+  .featured-panel .trending-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 0%;
+  }
+
+  .featured-panel .trending-card {
+    display: grid;
+    align-content: center;
+    flex: 1 1 0%;
+    padding: clamp(0.35rem, 0.7vh, 0.75rem) 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .featured-panel .trending-rank-bar {
+    margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
+  }
+
+  .featured-panel .trending-title {
+    font-size: clamp(0.88rem, 1.1vw, 1.05rem);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .featured-panel .trending-meta {
+    font-size: 0.58rem;
+  }
+
+  /* ---- Markets panel ---- */
+  #markets .section-heading,
+  #search .section-heading {
+    margin-bottom: clamp(0.75rem, 2vh, 2rem);
+  }
+
+  #markets .section-heading h2,
+  #search .section-heading h2 {
+    font-size: clamp(1.6rem, 3.4vw, 3.6rem);
+    max-width: 13ch;
+  }
+
+  /* ---- Search panel ---- */
+  #search .property-search-module {
+    padding: clamp(1rem, 2.5vh, 2.25rem) clamp(1rem, 2vw, 1.75rem);
+    border: 1px solid var(--color-border);
+    border-top: 2px solid var(--color-foreground);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent 42%),
+      var(--color-surface);
+  }
+
+  #search .search-tabs {
+    margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
+  }
+
+  #search .search-tab {
+    padding: clamp(0.3rem, 0.6vh, 0.5rem) 1.5rem;
+  }
+
+  #search .search-bar-row {
+    margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
+  }
+
+  #search .search-main-input,
+  #search .search-city-select select {
+    padding: clamp(0.55rem, 1vh, 0.85rem) 1.25rem;
+  }
+
+  #search .search-filter-row {
+    gap: clamp(0.75rem, 1.5vh, 2rem);
+    margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
+  }
+
+  #search .filter-chip {
+    padding: clamp(0.2rem, 0.4vh, 0.35rem) 0.85rem;
+    font-size: clamp(0.68rem, 0.9vw, 0.75rem);
   }
 
   #search .search-quick-cities {
     padding: clamp(0.4rem, 0.8vh, 0.75rem) 1.25rem;
   }
 
-  /* ---- Studio panel ---- */
-  .studio-panel .section-heading h2 {
+  /* ---- Studio section ---- */
+  .studio-section .section-heading h2 {
     font-size: clamp(1.5rem, 2.7vw, 3rem);
-    max-width: 12ch;
+    max-width: none;
   }
 
-  .studio-panel .section-heading {
+  .studio-section .section-heading {
     margin-bottom: clamp(0.5rem, 1.2vh, 1rem);
   }
 
-  .studio-panel .panel-grid {
+  .studio-section .studio-grid {
     max-height: calc(100svh - clamp(2rem, 4.4vh, 3.2rem));
     align-items: start;
     overflow: hidden;
   }
 
-  .studio-panel .feature-module {
+  .studio-section .studio-column {
     min-height: 0;
     height: min(calc(100svh - 8rem), 590px);
     display: flex;
@@ -255,73 +450,73 @@
     padding: clamp(0.6rem, 1.2vh, 1rem);
   }
 
-  .studio-panel .module-head {
+  .studio-section .studio-column-head {
     margin-bottom: clamp(0.4rem, 0.8vh, 0.85rem);
     padding-bottom: clamp(0.35rem, 0.7vh, 0.7rem);
     flex-shrink: 0;
   }
 
-  .studio-panel .module-head h3 {
+  .studio-section .studio-column-head h3 {
     font-size: clamp(1rem, 1.6vw, 1.4rem);
   }
 
-  .studio-panel .module-hero {
+  .studio-section .studio-hero-card {
     min-height: clamp(100px, 22svh, 280px);
     max-height: clamp(120px, 28svh, 320px);
     margin-bottom: clamp(0.4rem, 0.8vh, 0.85rem);
     flex-shrink: 1;
   }
 
-  .studio-panel .module-overlay h4 {
+  .studio-section .studio-overlay h4 {
     font-size: clamp(1rem, 1.4vw, 1.35rem);
   }
 
-  .studio-panel .module-overlay {
+  .studio-section .studio-overlay {
     padding: clamp(0.6rem, 1.2vh, 1.1rem);
   }
 
-  .studio-panel .module-list {
+  .studio-section .studio-list {
     min-height: 0;
     flex: 0 1 auto;
   }
 
-  .studio-panel .module-list-item {
+  .studio-section .studio-list-item {
     padding: clamp(0.25rem, 0.6vh, 0.65rem) 0;
     gap: clamp(0.4rem, 0.6vw, 0.7rem);
   }
 
-  .studio-panel .module-list-item h5 {
+  .studio-section .studio-list-item h5 {
     font-size: clamp(0.78rem, 1vw, 0.88rem);
     margin-bottom: 0.1rem;
   }
 
-  .studio-panel .module-list-item p {
+  .studio-section .studio-list-item p {
     font-size: clamp(0.58rem, 0.7vw, 0.65rem);
   }
 
-  .studio-panel .play-icon {
+  .studio-section .studio-play-icon {
     width: clamp(1.4rem, 2vh, 1.8rem);
     height: clamp(1.4rem, 2vh, 1.8rem);
   }
 
   /* Events card */
-  .studio-panel .event-hero {
+  .studio-section .event-hero {
     min-height: clamp(100px, 22svh, 240px);
     padding: clamp(0.7rem, 1.5vh, 1.25rem);
     flex-shrink: 1;
     overflow: hidden;
   }
 
-  .studio-panel .event-meta-row {
+  .studio-section .event-meta-row {
     margin-bottom: clamp(0.3rem, 0.6vh, 0.7rem);
   }
 
-  .studio-panel .event-hero h4 {
+  .studio-section .event-hero h4 {
     font-size: clamp(1rem, 1.8vw, 1.5rem);
     margin-bottom: clamp(0.25rem, 0.5vh, 0.5rem);
   }
 
-  .studio-panel .event-hero p {
+  .studio-section .event-hero p {
     font-size: clamp(0.75rem, 1vw, 0.88rem);
     margin-bottom: clamp(0.4rem, 0.8vh, 0.85rem);
     -webkit-line-clamp: 2;
@@ -330,25 +525,25 @@
     overflow: hidden;
   }
 
-  .studio-panel .countdown-grid {
+  .studio-section .countdown-grid {
     gap: clamp(0.25rem, 0.5vw, 0.5rem);
     margin-bottom: clamp(0.35rem, 0.7vh, 0.75rem);
   }
 
-  .studio-panel .countdown-card {
+  .studio-section .countdown-card {
     padding: clamp(0.3rem, 0.6vh, 0.65rem) 0.4rem;
   }
 
-  .studio-panel .countdown-card strong {
+  .studio-section .countdown-card strong {
     font-size: clamp(0.9rem, 1.4vw, 1.35rem);
   }
 
-  .studio-panel .event-list-item {
+  .studio-section .event-list-item {
     margin-top: clamp(0.4rem, 0.8vh, 0.85rem);
     padding-top: clamp(0.4rem, 0.8vh, 0.85rem);
   }
 
-  .studio-panel .event-list-item h5 {
+  .studio-section .event-list-item h5 {
     font-size: clamp(0.78rem, 1vw, 0.88rem);
   }
 
@@ -378,6 +573,44 @@
 
   #markets .market-chapter-framing {
     font-size: clamp(0.95rem, 1.05vw, 1.08rem);
+  }
+
+  /* ---- Studio section (new layout) ---- */
+  .studio-section.snap-section {
+    overflow: hidden;
+  }
+
+  .studio-section .studio-grid {
+    max-height: calc(100svh - 12rem);
+    overflow: hidden;
+  }
+
+  .studio-section .studio-column {
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .studio-section .studio-hero-card {
+    min-height: clamp(120px, 18vh, 200px);
+    max-height: 22vh;
+    flex-shrink: 1;
+  }
+
+  .studio-section .studio-hero-card.event-hero {
+    min-height: 0;
+    max-height: none;
+  }
+
+  .studio-section .countdown-grid {
+    gap: clamp(0.25rem, 0.4vw, 0.4rem);
+  }
+
+  .studio-section .countdown-card {
+    padding: clamp(0.35rem, 0.6vh, 0.55rem) 0.4rem;
+  }
+
+  .studio-section .countdown-card strong {
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
   }
 
   /* ---- Approach section (About + Contact) ---- */
@@ -428,7 +661,7 @@
 
   #markets .section-heading h2,
   #search .section-heading h2,
-  .studio-panel .section-heading h2 {
+  .studio-section .section-heading h2 {
     font-size: clamp(1.55rem, 2.4vw, 2.35rem);
   }
 
@@ -482,12 +715,12 @@
     display: none;
   }
 
-  .studio-panel .feature-module {
+  .studio-section .studio-column {
     height: min(64svh, 430px);
   }
 
-  .studio-panel .module-hero,
-  .studio-panel .event-hero {
+  .studio-section .studio-hero-card,
+  .studio-section .event-hero {
     min-height: 180px;
   }
 }
