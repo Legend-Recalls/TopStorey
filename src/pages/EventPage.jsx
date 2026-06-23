@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Footer, Masthead } from '../components'
+import { RecommendedPropertiesRail } from '../components/RecommendedPropertiesRail'
 import eventsData from '../data/events.json'
 import '../styles/15-event-page.css'
 
@@ -108,6 +109,8 @@ export function EventPage({ navItems, footerSections }) {
               </div>
             </div>
           </div>
+
+          <RecommendedPropertiesRail pageType="event" />
         </main>
 
         <Footer sections={footerSections} />
@@ -281,6 +284,8 @@ export function EventPage({ navItems, footerSections }) {
           </div>
 
         </div>
+
+        <RecommendedPropertiesRail pageType="event" />
       </main>
 
       <Footer sections={footerSections} />

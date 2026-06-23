@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Footer, Masthead } from '../components'
+import { RecommendedPropertiesRail } from '../components/RecommendedPropertiesRail'
 import { propertyDataset } from '../components/Cities'
 import '../styles/14-property-page.css'
 
 export function PropertyPage({ navItems, footerSections }) {
   const { id } = useParams()
-  const navigate = useNavigate()
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -42,10 +42,9 @@ export function PropertyPage({ navItems, footerSections }) {
     )
   }
 
-  // Get recommended properties (same purpose or city, excluding current)
-  const recommendations = propertyDataset
-    .filter((p) => p.id !== property.id)
-    .slice(0, 3)
+  // Recommended properties are now rendered by <RecommendedPropertiesRail>,
+  // which pulls the admin-controlled pinned list from Supabase and auto-fills
+  // the remaining pool behind it (excluding the current property).
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -291,34 +290,8 @@ export function PropertyPage({ navItems, footerSections }) {
           </div>
         </div>
 
-        {/* Recommended Opportunities Footer */}
-        <section className="prospectus-related-section">
-          <h2 className="prospectus-section-title">Alternative Investment Opportunities</h2>
-          <div className="prospectus-related-grid">
-            {recommendations.map((rec) => (
-              <div
-                key={rec.id}
-                className="related-prop-card"
-                onClick={() => navigate(`/properties/${rec.id}`)}
-              >
-                <div className="related-card-img-box">
-                  <img src={rec.image} alt={rec.title} className="related-card-img" />
-                </div>
-                <div className="related-card-body">
-                  <span className="related-card-locality">{rec.locality} · {rec.city}</span>
-                  <h4 className="related-card-title">{rec.title}</h4>
-                  
-                  <div className="related-card-footer">
-                    <span className="related-card-price">{rec.price}</span>
-                    <span className="related-card-btn">
-                      View Appraisal
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Recommended Opportunities Rail (admin-controlled, horizontal) */}
+        <RecommendedPropertiesRail pageType="property" currentPropertyId={property.id} />
 
       </main>
 

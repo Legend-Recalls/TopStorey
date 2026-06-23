@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Footer, Masthead } from '../components'
+import { RecommendedPropertiesRail } from '../components/RecommendedPropertiesRail'
 import { getRelatedStories, getStoryBySlug, storyPath } from '../data/storyCatalog'
 import { getImageShape } from '../utils/imageShape'
 
@@ -132,6 +133,8 @@ export function StoryPage({ navItems, footerSections }) {
           </div>
         </article>
       </main>
+
+      <RecommendedPropertiesRail pageType="story" />
 
       <Footer sections={footerSections} />
     </div>

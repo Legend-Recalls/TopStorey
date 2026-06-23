@@ -189,8 +189,8 @@
     max-width: 13ch;
   }
 
-  /* ---- Search panel ---- */
-  #search .property-search-module {
+  /* ---- Recommended Properties panel ---- */
+  #search .recommended-properties-module {
     padding: clamp(1rem, 2.5vh, 2.25rem) clamp(1rem, 2vw, 1.75rem);
     border: 1px solid var(--color-border);
     border-top: 2px solid var(--color-foreground);
@@ -199,29 +199,28 @@
       var(--color-surface);
   }
 
-  #search .search-tabs {
+  #search .rec-tabs {
     margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   }
 
-  #search .search-tab {
+  #search .rec-tab {
     padding: clamp(0.3rem, 0.6vh, 0.5rem) 1.5rem;
   }
 
-  #search .search-bar-row {
+  #search .rec-filters {
     margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   }
 
-  #search .search-main-input,
-  #search .search-city-select select {
+  #search .rec-filter-select {
     padding: clamp(0.55rem, 1vh, 0.85rem) 1.25rem;
   }
 
-  #search .search-filter-row {
+  #search .rec-properties-grid {
     gap: clamp(0.75rem, 1.5vh, 2rem);
     margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   }
 
-  #search .filter-chip {
+  #search .rec-card-type-badge {
     padding: clamp(0.2rem, 0.4vh, 0.35rem) 0.85rem;
     font-size: clamp(0.68rem, 0.9vw, 0.75rem);
     --landing-hero-gap: 1rem;
@@ -384,8 +383,8 @@
     max-width: 13ch;
   }
 
-  /* ---- Search panel ---- */
-  #search .property-search-module {
+  /* ---- Recommended Properties panel ---- */
+  #search .recommended-properties-module {
     padding: clamp(1rem, 2.5vh, 2.25rem) clamp(1rem, 2vw, 1.75rem);
     border: 1px solid var(--color-border);
     border-top: 2px solid var(--color-foreground);
@@ -394,34 +393,33 @@
       var(--color-surface);
   }
 
-  #search .search-tabs {
+  #search .rec-tabs {
     margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   }
 
-  #search .search-tab {
+  #search .rec-tab {
     padding: clamp(0.3rem, 0.6vh, 0.5rem) 1.5rem;
   }
 
-  #search .search-bar-row {
+  #search .rec-filters {
     margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   }
 
-  #search .search-main-input,
-  #search .search-city-select select {
+  #search .rec-filter-select {
     padding: clamp(0.55rem, 1vh, 0.85rem) 1.25rem;
   }
 
-  #search .search-filter-row {
+  #search .rec-properties-grid {
     gap: clamp(0.75rem, 1.5vh, 2rem);
     margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   }
 
-  #search .filter-chip {
+  #search .rec-card-type-badge {
     padding: clamp(0.2rem, 0.4vh, 0.35rem) 0.85rem;
     font-size: clamp(0.68rem, 0.9vw, 0.75rem);
   }
 
-  #search .search-quick-cities {
+  #search .rec-bottom-cta {
     padding: clamp(0.4rem, 0.8vh, 0.75rem) 1.25rem;
   }
 

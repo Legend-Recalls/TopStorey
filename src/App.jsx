@@ -7,7 +7,7 @@ import {
   FeaturedTrendingSection,
   StudioSection,
   Markets,
-  PropertySearch,
+  RecommendedProperties,
   About,
   ContactCard,
   Footer,
@@ -275,14 +275,8 @@ function HomePage() {
           {/* GSAP horizontal scroll section — has its own pin */}
           <FeaturedTrendingSection featured={featuredStories} trending={mostRead} />
 
-          <section className="section snap-section" id="search">
-            <div className="section-heading reveal-item">
-              <p className="eyebrow">Search Properties</p>
-              <h2>Find your next investment across India's top real estate markets.</h2>
-            </div>
-            <div className="reveal-item">
-              <PropertySearch />
-            </div>
+          <section className="section" id="search">
+            <RecommendedProperties />
           </section>
 
           {/* GSAP horizontal scroll section — is its own snap-section */}
